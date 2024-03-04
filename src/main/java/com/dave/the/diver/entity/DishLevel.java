@@ -7,7 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Getter
-@Table(name = "dish_level")
+@Table(name = "dtd_dish_level")
 public class DishLevel {
 
     @Id
