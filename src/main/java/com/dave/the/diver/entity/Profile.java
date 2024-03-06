@@ -17,7 +17,7 @@ public class Profile {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "profile_Id", columnDefinition = "VARCHAR(50)", nullable = false, length = 50)
+    @Column(name = "profile_Id", nullable = false, length = 50)
     private String profileId;
 
     private String accountId;

@@ -13,7 +13,7 @@ public class DishLevel {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "dish_level_id", columnDefinition = "VARCHAR(50)", nullable = false, length = 50)
+    @Column(name = "dish_level_id", nullable = false, length = 50)
     private String dishLevelId;
 
     @JsonIgnore
@@ -21,5 +21,6 @@ public class DishLevel {
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
+    @Column(name = "level")
     private int level;
 }
