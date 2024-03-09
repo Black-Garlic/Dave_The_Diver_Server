@@ -18,6 +18,11 @@ public class DishLevel {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "dish_id")
+    private Dish dish;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
