@@ -27,4 +27,10 @@ public class Unlock {
         this.unlockId = unlockId;
         this.name = name;
     }
+
+    public void updateUnlock(
+        String name
+    ) {
+        this.name = name;
+    }
 }

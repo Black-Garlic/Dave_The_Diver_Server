@@ -20,11 +20,24 @@ public class Party {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
+    @Column(name = "color", length = 20)
+    private String color;
+
     public Party(
         String partyId,
-        String name
+        String name,
+        String color
     ) {
         this.partyId = partyId;
         this.name = name;
+        this.color = color;
+    }
+
+    public void updateParty(
+        String name,
+        String color
+    ) {
+        this.name = name;
+        this.color = color;
     }
 }

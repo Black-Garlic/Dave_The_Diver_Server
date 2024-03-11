@@ -334,14 +334,14 @@ public class Data {
         public Party() {
             this.partyList = new ArrayList<>();
 
-            partyList.add(new com.dave.the.diver.entity.Party("JELLY_FISH", "해파리 파티"));
-            partyList.add(new com.dave.the.diver.entity.Party("TUNA", "참치 요트 파티"));
-            partyList.add(new com.dave.the.diver.entity.Party("MARLIN", "청새치 파티"));
-            partyList.add(new com.dave.the.diver.entity.Party("STORM_SHARK", "스톰 샤크 파티"));
-            partyList.add(new com.dave.the.diver.entity.Party("CUCUMBER", "오이 파티"));
-            partyList.add(new com.dave.the.diver.entity.Party("CURRY", "카레 파티"));
-            partyList.add(new com.dave.the.diver.entity.Party("SHRIMP", "새우 파티"));
-            partyList.add(new com.dave.the.diver.entity.Party("LOBSTER", "랍스터 파티"));
+            partyList.add(new com.dave.the.diver.entity.Party("JELLY_FISH", "해파리 파티", "blueviolet"));
+            partyList.add(new com.dave.the.diver.entity.Party("TUNA", "참치 요트 파티", "dodgerblue"));
+            partyList.add(new com.dave.the.diver.entity.Party("MARLIN", "청새치 파티", "darkblue"));
+            partyList.add(new com.dave.the.diver.entity.Party("STORM_SHARK", "스톰 샤크 파티", "black"));
+            partyList.add(new com.dave.the.diver.entity.Party("CUCUMBER", "오이 파티", "forestgreen"));
+            partyList.add(new com.dave.the.diver.entity.Party("CURRY", "카레 파티", "goldenrod"));
+            partyList.add(new com.dave.the.diver.entity.Party("SHRIMP", "새우 파티", "lightsalmon"));
+            partyList.add(new com.dave.the.diver.entity.Party("LOBSTER", "랍스터 파티", "orangered"));
         }
     }
 

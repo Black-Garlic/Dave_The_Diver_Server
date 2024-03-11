@@ -62,4 +62,17 @@ public class Dish {
         this.flame = dishInfo.getFlame();
         this.unlock = unlock;
     }
+
+    public void updateDish(
+        Data.DishInfo dishInfo,
+        Unlock unlock
+    ) {
+        this.name = dishInfo.getName();
+        this.maxCost = dishInfo.getMaxCost();
+        this.maxScore = dishInfo.getMaxScore();
+        this.maxCount = dishInfo.getMaxCount();
+        this.maxLevel = dishInfo.getMaxLevel();
+        this.flame = dishInfo.getFlame();
+        this.unlock = unlock;
+    }
 }
