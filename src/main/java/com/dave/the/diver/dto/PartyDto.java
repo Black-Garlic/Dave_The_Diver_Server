@@ -10,7 +10,7 @@ public class PartyDto {
     private final String name;
 
     public PartyDto(
-        com.dave.the.diver.entity.Party party
+        Party party
     ) {
         this.partyId = party.getPartyId();
         this.name = party.getName();

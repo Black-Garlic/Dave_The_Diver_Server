@@ -1,5 +1,6 @@
 package com.dave.the.diver.dto;
 
+import com.dave.the.diver.entity.Dish;
 import lombok.Getter;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class DishDto {
     private final List<String> partyList;
 
     public DishDto(
-        com.dave.the.diver.entity.Dish dish
+        Dish dish
     ) {
         this.dishId = dish.getDishId();
         this.name = dish.getName();

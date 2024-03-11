@@ -1,5 +1,6 @@
 package com.dave.the.diver.dto;
 
+import com.dave.the.diver.entity.DishLevel;
 import lombok.Getter;
 
 @Getter
@@ -11,7 +12,7 @@ public class DishLevelDto {
     private final int dishLevel;
 
     public DishLevelDto(
-        com.dave.the.diver.entity.DishLevel dishLevel
+        DishLevel dishLevel
     ) {
         this.dishLevelId = dishLevel.getDishLevelId();
         this.dish = new DishDto(dishLevel.getDish());
