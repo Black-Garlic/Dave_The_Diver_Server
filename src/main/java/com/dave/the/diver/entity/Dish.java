@@ -1,14 +1,16 @@
 package com.dave.the.diver.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import java.util.List;
 
 @Entity
 @Getter
-@Table(name = "dish")
+@Table(name = "dtd_dish")
 public class Dish {
 
     @Id
@@ -32,4 +34,15 @@ public class Dish {
 
     @Column(name = "flame")
     private int flame = 0;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "unlock_id")
+    private Unlock unlock;
+
+    @OneToMany(mappedBy = "dish",
+        fetch = FetchType.EAGER
+    )
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<DishPartyRelation> dishPartyRelationList;
 }

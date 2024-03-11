@@ -7,14 +7,14 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Getter
-@Table(name = "dtd_dish_level")
-public class DishLevel {
+@Table(name = "dtd_dish_party_relation")
+public class DishPartyRelation {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "dish_level_id", nullable = false, length = 50)
-    private String dishLevelId;
+    @Column(name = "dish_party_relation_id", nullable = false, length = 50)
+    private String dishPartyRelationId;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
@@ -23,9 +23,6 @@ public class DishLevel {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "profile_id")
-    private Profile profile;
-
-    @Column(name = "dish_level")
-    private int dishLevel;
+    @JoinColumn(name = "party_id")
+    private Party party;
 }
