@@ -14,34 +14,6 @@ public class DataController {
 
     private final DataService dataService;
 
-    @PostMapping(path = Path.DATA_DISH, produces = "application/json")
-    public Result generateDefaultDish() {
-        Result result = new Result();
-
-        try {
-            dataService.generateDefaultDishData();
-            result.setSuccessResult(null);
-        } catch (Exception e) {
-            result.setFailResult(e.getMessage());
-        }
-
-        return result;
-    }
-
-    @PostMapping(path = Path.DATA_PARTY, produces = "application/json")
-    public Result generateDefaultPartyData() {
-        Result result = new Result();
-
-        try {
-            dataService.generateDefaultPartyData();
-            result.setSuccessResult(null);
-        } catch (Exception e) {
-            result.setFailResult(e.getMessage());
-        }
-
-        return result;
-    }
-
     @PostMapping(path = Path.DATA_FISH, produces = "application/json")
     public Result generateDefaultFishData() {
         Result result = new Result();
@@ -76,6 +48,34 @@ public class DataController {
 
         try {
             dataService.generateDefaultTimeData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @PostMapping(path = Path.DATA_DISH, produces = "application/json")
+    public Result generateDefaultDish() {
+        Result result = new Result();
+
+        try {
+            dataService.generateDefaultDishData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @PostMapping(path = Path.DATA_PARTY, produces = "application/json")
+    public Result generateDefaultPartyData() {
+        Result result = new Result();
+
+        try {
+            dataService.generateDefaultPartyData();
             result.setSuccessResult(null);
         } catch (Exception e) {
             result.setFailResult(e.getMessage());

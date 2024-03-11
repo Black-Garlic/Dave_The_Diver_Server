@@ -14,13 +14,109 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DataService {
 
+    private final FishRepository fishRepository;
+    private final RegionRepository regionRepository;
+    private final TimeRepository timeRepository;
     private final DishRepository dishRepository;
     private final DishPartyRelationRepository dishPartyRelationRepository;
     private final PartyRepository partyRepository;
     private final UnlockRepository unlockRepository;
-    private final FishRepository fishRepository;
-    private final RegionRepository regionRepository;
-    private final TimeRepository timeRepository;
+
+    public void generateDefaultFishData() throws JSONException {
+        Data.Fish fishData = new Data.Fish();
+
+        List<Region> regionList = regionRepository.findAll();
+        List<Time> timeList = timeRepository.findAll();
+
+        for (Data.FishInfo fishInfo : fishData.getFishInfoList()) {
+            Fish fish;
+
+            Optional<Fish> fishOptional = fishRepository.findById(fishInfo.getFishId());
+
+            Region region = this.getRegion(fishInfo.getRegion(), regionList);
+            Time time = this.getTime(fishInfo.getTime(), timeList);
+
+            if (fishOptional.isEmpty()) {
+                fish = new Fish(fishInfo, region, time);
+            } else {
+                fish = fishOptional.get();
+
+                fish.updateFish(fishInfo, region, time);
+            }
+
+            fishRepository.save(fish);
+        }
+    }
+
+    public Region getRegion(
+        String regionName,
+        List<Region> regionList
+    ) {
+        if (regionName == null) {
+            return null;
+        }
+
+        for (Region region : regionList) {
+            if (region.getName().equals(regionName)) {
+                return region;
+            }
+        }
+
+        return null;
+    }
+
+    public Time getTime(
+        String timeName,
+        List<Time> timeList
+    ) {
+        if (timeName == null) {
+            return null;
+        }
+
+        for (Time time : timeList) {
+            if (time.getName().equals(timeName)) {
+                return time;
+            }
+        }
+
+        return null;
+    }
+
+    public void generateDefaultRegionData() {
+        Data.Region regionData = new Data.Region();
+
+        for (Region region : regionData.getRegionList()) {
+            Optional<Region> regionOptional = regionRepository.findById(region.getRegionId());
+
+            if (regionOptional.isEmpty()) {
+                regionRepository.save(region);
+            } else {
+                Region existRegion = regionOptional.get();
+
+                existRegion.updateRegion(region.getName(), region.getColor());
+
+                regionRepository.save(existRegion);
+            }
+        }
+    }
+
+    public void generateDefaultTimeData() {
+        Data.Time timeData = new Data.Time();
+
+        for (Time time : timeData.getTimeList()) {
+            Optional<Time> timeOptional = timeRepository.findById(time.getTimeId());
+
+            if (timeOptional.isEmpty()) {
+                timeRepository.save(time);
+            } else {
+                Time existTime = timeOptional.get();
+
+                existTime.updateTime(time.getName(), time.getColor());
+
+                timeRepository.save(existTime);
+            }
+        }
+    }
 
     public void generateDefaultDishData() throws JSONException {
         Data.Dish dishData = new Data.Dish();
@@ -29,7 +125,7 @@ public class DataService {
         List<Unlock> unlockList = unlockRepository.findAll();
 
         for (Data.DishInfo dishInfo : dishData.getDishJsonList()) {
-            Dish dish = null;
+            Dish dish;
 
             Optional<Dish> dishOptional = dishRepository.findById(dishInfo.getDishId());
 
@@ -116,102 +212,6 @@ public class DataService {
                 existUnlock.updateUnlock(unlock.getName());
 
                 unlockRepository.save(existUnlock);
-            }
-        }
-    }
-
-    public void generateDefaultFishData() throws JSONException {
-        Data.Fish fishData = new Data.Fish();
-
-        List<Region> regionList = regionRepository.findAll();
-        List<Time> timeList = timeRepository.findAll();
-
-        for (Data.FishInfo fishInfo : fishData.getFishInfoList()) {
-            Fish fish = null;
-
-            Optional<Fish> fishOptional = fishRepository.findById(fishInfo.getFishId());
-
-            Region region = this.getRegion(fishInfo.getRegion(), regionList);
-            Time time = this.getTime(fishInfo.getTime(), timeList);
-
-            if (fishOptional.isEmpty()) {
-                fish = new Fish(fishInfo, region, time);
-            } else {
-                fish = fishOptional.get();
-
-                fish.updateFish(fishInfo, region, time);
-            }
-
-            fishRepository.save(fish);
-        }
-    }
-
-    public Region getRegion(
-        String regionName,
-        List<Region> regionList
-    ) {
-        if (regionName == null) {
-            return null;
-        }
-
-        for (Region region : regionList) {
-            if (region.getName().equals(regionName)) {
-                return region;
-            }
-        }
-
-        return null;
-    }
-
-    public Time getTime(
-        String timeName,
-        List<Time> timeList
-    ) {
-        if (timeName == null) {
-            return null;
-        }
-
-        for (Time time : timeList) {
-            if (time.getName().equals(timeName)) {
-                return time;
-            }
-        }
-
-        return null;
-    }
-
-    public void generateDefaultRegionData() {
-        Data.Region regionData = new Data.Region();
-
-        for (Region region : regionData.getRegionList()) {
-            Optional<Region> regionOptional = regionRepository.findById(region.getRegionId());
-
-            if (regionOptional.isEmpty()) {
-                regionRepository.save(region);
-            } else {
-                Region existRegion = regionOptional.get();
-
-                existRegion.updateRegion(region.getName(), region.getColor());
-
-                regionRepository.save(existRegion);
-            }
-        }
-    }
-
-    public void generateDefaultTimeData() {
-        Data.Time timeData = new Data.Time();
-
-        for (Time time : timeData.getTimeList()) {
-            Optional<Time> timeOptional = timeRepository.findById(time.getTimeId());
-
-            if (timeOptional.isEmpty()) {
-                timeRepository.save(time);
-            } else {
-                Time existTime = timeOptional.get();
-
-                existTime.updateTime(time.getName(), time.getColor());
-
-                timeRepository.save(existTime);
             }
         }
     }
