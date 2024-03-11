@@ -1,6 +1,6 @@
 package com.dave.the.diver.mapper;
 
-import com.dave.the.diver.dto.DishDto;
+import com.dave.the.diver.dto.DishLevelDto;
 import com.dave.the.diver.entity.DishLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DishLevelMapper {
 
-    public List<DishDto.DishLevel> convertDishLevelListToDishLevelDtoList(
+    public List<DishLevelDto> convertDishLevelListToDishLevelDtoList(
         List<DishLevel> dishLevelList
     ) {
         return dishLevelList.stream()
@@ -19,9 +19,9 @@ public class DishLevelMapper {
             .toList();
     }
 
-    public DishDto.DishLevel convertDishLevelToDishLevelDto(
+    public DishLevelDto convertDishLevelToDishLevelDto(
         DishLevel dishLevel
     ) {
-        return new DishDto.DishLevel(dishLevel);
+        return new DishLevelDto(dishLevel);
     }
 }
