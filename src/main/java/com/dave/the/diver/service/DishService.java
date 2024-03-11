@@ -1,5 +1,6 @@
 package com.dave.the.diver.service;
 
+import com.dave.the.diver.constant.Data;
 import com.dave.the.diver.dto.DishDto;
 import com.dave.the.diver.entity.DishLevel;
 import com.dave.the.diver.entity.Profile;
@@ -8,6 +9,7 @@ import com.dave.the.diver.repository.DishLevelRepository;
 import com.dave.the.diver.repository.ProfileRepository;
 import com.dave.the.diver.vm.DishVM;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

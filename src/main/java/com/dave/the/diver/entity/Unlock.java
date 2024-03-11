@@ -5,10 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @Table(name = "dtd_unlock")
+@NoArgsConstructor
 public class Unlock {
 
     @Id
@@ -17,4 +19,12 @@ public class Unlock {
 
     @Column(name = "name", nullable = false, length = 50)
     private String name;
+
+    public Unlock(
+        String unlockId,
+        String name
+    ) {
+        this.unlockId = unlockId;
+        this.name = name;
+    }
 }

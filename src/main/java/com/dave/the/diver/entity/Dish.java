@@ -1,8 +1,10 @@
 package com.dave.the.diver.entity;
 
+import com.dave.the.diver.constant.Data;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @Entity
 @Getter
 @Table(name = "dtd_dish")
+@NoArgsConstructor
 public class Dish {
 
     @Id
@@ -45,4 +48,18 @@ public class Dish {
     )
     @Fetch(value = FetchMode.SUBSELECT)
     private List<DishPartyRelation> dishPartyRelationList;
+
+    public Dish(
+        Data.DishInfo dishInfo,
+        Unlock unlock
+    ) {
+        this.dishId = dishInfo.getDishId();
+        this.name = dishInfo.getName();
+        this.maxCost = dishInfo.getMaxCost();
+        this.maxScore = dishInfo.getMaxScore();
+        this.maxCount = dishInfo.getMaxCount();
+        this.maxLevel = dishInfo.getMaxLevel();
+        this.flame = dishInfo.getFlame();
+        this.unlock = unlock;
+    }
 }
