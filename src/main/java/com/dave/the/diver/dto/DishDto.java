@@ -15,8 +15,8 @@ public class DishDto {
     private final int maxCount;
     private final int maxLevel;
     private final int flame;
-    private final String unlock;
-    private final List<PartyDto> partyDtoList;
+    private String unlock;
+    private final List<String> partyList;
 
     public DishDto(
         com.dave.the.diver.entity.Dish dish
@@ -28,9 +28,13 @@ public class DishDto {
         this.maxCount = dish.getMaxCount();
         this.maxLevel = dish.getMaxLevel();
         this.flame = dish.getFlame();
-        this.unlock = dish.getUnlock().getName();
-        this.partyDtoList = dish.getDishPartyRelationList().stream()
-            .map(dishPartyRelation -> new PartyDto(dishPartyRelation.getParty()))
+
+        if (dish.getUnlock() != null) {
+            this.unlock = dish.getUnlock().getName();
+        }
+
+        this.partyList = dish.getDishPartyRelationList().stream()
+            .map(dishPartyRelation -> new PartyDto(dishPartyRelation.getParty()).getName())
             .collect(Collectors.toList());
     }
 }

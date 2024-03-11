@@ -9,5 +9,6 @@ public class Path {
     public static final String DATA_UNLOCK = DATA + "/unlock";
 
     public static final String DISH = API + "/dish";
+
     public static final String DISH_LEVEL = API + "/dish-level";
 }
