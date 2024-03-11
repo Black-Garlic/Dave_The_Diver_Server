@@ -4,6 +4,7 @@ import com.dave.the.diver.constant.Path;
 import com.dave.the.diver.dto.Result;
 import com.dave.the.diver.service.DataService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,6 +48,20 @@ public class DataController {
 
         try {
             dataService.generateDefaultUnlockData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @DeleteMapping(path = Path.DATA_DISH, produces = "application/json")
+    public Result deleteDefaultDishInfo() {
+        Result result = new Result();
+
+        try {
+            dataService.deleteDefaultDishInfo();
             result.setSuccessResult(null);
         } catch (Exception e) {
             result.setFailResult(e.getMessage());

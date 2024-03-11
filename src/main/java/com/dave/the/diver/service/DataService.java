@@ -94,4 +94,9 @@ public class DataService {
             }
         }
     }
+
+    public void deleteDefaultDishInfo() {
+        dishPartyRelationRepository.deleteAll();
+        dishRepository.deleteAll();
+    }
 }

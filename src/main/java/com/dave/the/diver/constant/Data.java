@@ -347,6 +347,38 @@ public class Data {
 
     @Getter
     public static class Unlock {
+        private enum STAFF {
+            STAFF,
+            DRE,
+            RAPTOR,
+            MAKI,
+            KORCANIJI,
+            DAVINA,
+            RAUL,
+            RIU,
+            MASAYOSI,
+            MICHEL,
+            BILLY,
+            EL_NINYO,
+            YONE,
+            YUSKE,
+            ITSUKI,
+            JANDI,
+            JAMES,
+            CHARLY,
+            CAROLLINA,
+            KYOKO,
+            TOHOKU,
+            PIE,
+
+        }
+
+        private enum LEVEL {
+            LV_5,
+            LV_10,
+            LV_15
+        }
+
         private final List<com.dave.the.diver.entity.Unlock> unlockList;
 
         public Unlock() {
@@ -373,6 +405,36 @@ public class Data {
             unlockList.add(new com.dave.the.diver.entity.Unlock("PARTY_CUCUMBER", "오이 파티 시작"));
             unlockList.add(new com.dave.the.diver.entity.Unlock("PARTY_LOBSTER", "랍스터 파티 시작"));
             unlockList.add(new com.dave.the.diver.entity.Unlock("SECRET_RECIPE", "비밀 레시피"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.STAFF.name() + "_" + LEVEL.LV_5.name(), "직원 Lv.5 달성"));
+            // TODO 직원 이름 확인
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.DRE.name() + "_" + LEVEL.LV_5.name(), "드레 Lv.5 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.RAPTOR.name() + "_" + LEVEL.LV_5.name(), "랩터 Lv.5 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.MAKI.name() + "_" + LEVEL.LV_5.name(), "마키 Lv.5 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.KORCANIJI.name() + "_" + LEVEL.LV_5.name(), "코카니지 Lv.5 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.DRE.name() + "_" + LEVEL.LV_10.name(), "드레 Lv.10 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.RAPTOR.name() + "_" + LEVEL.LV_10.name(), "랩터 Lv.10 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.KORCANIJI.name() + "_" + LEVEL.LV_10.name(), "코카니지 Lv.10 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.DAVINA.name() + "_" + LEVEL.LV_15.name(), "다비나 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.DRE.name() + "_" + LEVEL.LV_15.name(), "드레 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.RAUL.name() + "_" + LEVEL.LV_15.name(), "라울 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.RAPTOR.name() + "_" + LEVEL.LV_15.name(), "랩터 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.RIU.name() + "_" + LEVEL.LV_15.name(), "리우 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.MASAYOSI.name() + "_" + LEVEL.LV_15.name(), "마사요시 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.MAKI.name() + "_" + LEVEL.LV_15.name(), "마키 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.MICHEL.name() + "_" + LEVEL.LV_15.name(), "미첼 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.BILLY.name() + "_" + LEVEL.LV_15.name(), "빌리 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.EL_NINYO.name() + "_" + LEVEL.LV_15.name(), "엘 니뇨 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.YONE.name() + "_" + LEVEL.LV_15.name(), "요네 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.YUSKE.name() + "_" + LEVEL.LV_15.name(), "유스케 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.ITSUKI.name() + "_" + LEVEL.LV_15.name(), "이츠키 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.JANDI.name() + "_" + LEVEL.LV_15.name(), "잔디 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.JAMES.name() + "_" + LEVEL.LV_15.name(), "제임스 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.CHARLY.name() + "_" + LEVEL.LV_15.name(), "찰리 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.CAROLLINA.name() + "_" + LEVEL.LV_15.name(), "카롤리나 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.KORCANIJI.name() + "_" + LEVEL.LV_15.name(), "코카니지 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.KYOKO.name() + "_" + LEVEL.LV_15.name(), "쿄코 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.TOHOKU.name() + "_" + LEVEL.LV_15.name(), "토호쿠 Lv.15 달성"));
+            unlockList.add(new com.dave.the.diver.entity.Unlock(STAFF.PIE.name() + "_" + LEVEL.LV_15.name(), "파이 Lv.15 달성"));
         }
     }
 }
