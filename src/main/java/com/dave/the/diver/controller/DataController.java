@@ -42,6 +42,48 @@ public class DataController {
         return result;
     }
 
+    @PostMapping(path = Path.DATA_FISH, produces = "application/json")
+    public Result generateDefaultFishData() {
+        Result result = new Result();
+
+        try {
+            dataService.generateDefaultFishData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @PostMapping(path = Path.DATA_REGION, produces = "application/json")
+    public Result generateDefaultRegionData() {
+        Result result = new Result();
+
+        try {
+            dataService.generateDefaultRegionData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @PostMapping(path = Path.DATA_TIME, produces = "application/json")
+    public Result generateDefaultTimeData() {
+        Result result = new Result();
+
+        try {
+            dataService.generateDefaultTimeData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
     @PostMapping(path = Path.DATA_UNLOCK, produces = "application/json")
     public Result generateDefaultUnlockData() {
         Result result = new Result();

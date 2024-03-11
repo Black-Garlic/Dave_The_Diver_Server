@@ -1,16 +1,9 @@
 package com.dave.the.diver.service;
 
 import com.dave.the.diver.constant.Data;
-import com.dave.the.diver.entity.Dish;
-import com.dave.the.diver.entity.DishPartyRelation;
-import com.dave.the.diver.entity.Party;
-import com.dave.the.diver.entity.Unlock;
-import com.dave.the.diver.repository.DishPartyRelationRepository;
-import com.dave.the.diver.repository.DishRepository;
-import com.dave.the.diver.repository.PartyRepository;
-import com.dave.the.diver.repository.UnlockRepository;
+import com.dave.the.diver.entity.*;
+import com.dave.the.diver.repository.*;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.sql.Update;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 
@@ -25,30 +18,32 @@ public class DataService {
     private final DishPartyRelationRepository dishPartyRelationRepository;
     private final PartyRepository partyRepository;
     private final UnlockRepository unlockRepository;
+    private final FishRepository fishRepository;
+    private final RegionRepository regionRepository;
+    private final TimeRepository timeRepository;
 
     public void generateDefaultDishData() throws JSONException {
         Data.Dish dishData = new Data.Dish();
 
         List<Party> partyList = partyRepository.findAll();
+        List<Unlock> unlockList = unlockRepository.findAll();
 
         for (Data.DishInfo dishInfo : dishData.getDishJsonList()) {
             Dish dish = null;
 
             Optional<Dish> dishOptional = dishRepository.findById(dishInfo.getDishId());
 
-            Unlock unlock = this.getUnlock(dishInfo.getUnlock());
+            Unlock unlock = this.getUnlock(dishInfo.getUnlock(), unlockList);
 
             if (dishOptional.isEmpty()) {
                 dish = new Dish(dishInfo, unlock);
-
-                dishRepository.save(dish);
             } else {
                 dish = dishOptional.get();
 
                 dish.updateDish(dishInfo, unlock);
-
-                dishRepository.save(dish);
             }
+
+            dishRepository.save(dish);
 
             for (String partyName : dishInfo.getPartyList()) {
                 this.generateDishPartyRelation(dish, partyList, partyName);
@@ -57,19 +52,20 @@ public class DataService {
     }
 
     private Unlock getUnlock(
-        String unlockName
+        String unlockName,
+        List<Unlock> unlockList
     ) {
-        Unlock unlock = null;
+        if (unlockName == null) {
+            return null;
+        }
 
-        if (unlockName != null) {
-            Optional<Unlock> unlockOptional = unlockRepository.findByName(unlockName);
-
-            if (unlockOptional.isPresent()) {
-                unlock = unlockOptional.get();
+        for (Unlock unlock : unlockList) {
+            if (unlock.getName().equals(unlockName)) {
+                return unlock;
             }
         }
 
-        return unlock;
+        return null;
     }
 
     private void generateDishPartyRelation(
@@ -120,6 +116,102 @@ public class DataService {
                 existUnlock.updateUnlock(unlock.getName());
 
                 unlockRepository.save(existUnlock);
+            }
+        }
+    }
+
+    public void generateDefaultFishData() throws JSONException {
+        Data.Fish fishData = new Data.Fish();
+
+        List<Region> regionList = regionRepository.findAll();
+        List<Time> timeList = timeRepository.findAll();
+
+        for (Data.FishInfo fishInfo : fishData.getFishInfoList()) {
+            Fish fish = null;
+
+            Optional<Fish> fishOptional = fishRepository.findById(fishInfo.getFishId());
+
+            Region region = this.getRegion(fishInfo.getRegion(), regionList);
+            Time time = this.getTime(fishInfo.getTime(), timeList);
+
+            if (fishOptional.isEmpty()) {
+                fish = new Fish(fishInfo, region, time);
+            } else {
+                fish = fishOptional.get();
+
+                fish.updateFish(fishInfo, region, time);
+            }
+
+            fishRepository.save(fish);
+        }
+    }
+
+    public Region getRegion(
+        String regionName,
+        List<Region> regionList
+    ) {
+        if (regionName == null) {
+            return null;
+        }
+
+        for (Region region : regionList) {
+            if (region.getName().equals(regionName)) {
+                return region;
+            }
+        }
+
+        return null;
+    }
+
+    public Time getTime(
+        String timeName,
+        List<Time> timeList
+    ) {
+        if (timeName == null) {
+            return null;
+        }
+
+        for (Time time : timeList) {
+            if (time.getName().equals(timeName)) {
+                return time;
+            }
+        }
+
+        return null;
+    }
+
+    public void generateDefaultRegionData() {
+        Data.Region regionData = new Data.Region();
+
+        for (Region region : regionData.getRegionList()) {
+            Optional<Region> regionOptional = regionRepository.findById(region.getRegionId());
+
+            if (regionOptional.isEmpty()) {
+                regionRepository.save(region);
+            } else {
+                Region existRegion = regionOptional.get();
+
+                existRegion.updateRegion(region.getName(), region.getColor());
+
+                regionRepository.save(existRegion);
+            }
+        }
+    }
+
+    public void generateDefaultTimeData() {
+        Data.Time timeData = new Data.Time();
+
+        for (Time time : timeData.getTimeList()) {
+            Optional<Time> timeOptional = timeRepository.findById(time.getTimeId());
+
+            if (timeOptional.isEmpty()) {
+                timeRepository.save(time);
+            } else {
+                Time existTime = timeOptional.get();
+
+                existTime.updateTime(time.getName(), time.getColor());
+
+                timeRepository.save(existTime);
             }
         }
     }

@@ -7,6 +7,9 @@ public class Path {
     public static final String DATA_DISH = DATA + "/dish";
     public static final String DATA_PARTY = DATA + "/party";
     public static final String DATA_UNLOCK = DATA + "/unlock";
+    public static final String DATA_FISH = DATA + "/fish";
+    public static final String DATA_REGION = DATA + "/region";
+    public static final String DATA_TIME = DATA + "/time";
 
     public static final String DISH = API + "/dish";
 
