@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class DishMapper {
+public class DishLevelMapper {
 
     public List<DishDto.DishLevel> convertDishLevelListToDishLevelDtoList(
         List<DishLevel> dishLevelList

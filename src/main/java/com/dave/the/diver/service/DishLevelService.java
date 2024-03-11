@@ -1,27 +1,25 @@
 package com.dave.the.diver.service;
 
-import com.dave.the.diver.constant.Data;
 import com.dave.the.diver.dto.DishDto;
 import com.dave.the.diver.entity.DishLevel;
 import com.dave.the.diver.entity.Profile;
-import com.dave.the.diver.mapper.DishMapper;
+import com.dave.the.diver.mapper.DishLevelMapper;
 import com.dave.the.diver.repository.DishLevelRepository;
 import com.dave.the.diver.repository.ProfileRepository;
 import com.dave.the.diver.vm.DishVM;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class DishService {
+public class DishLevelService {
 
     private final DishLevelRepository dishLevelRepository;
     private final ProfileRepository profileRepository;
 
-    private final DishMapper dishMapper;
+    private final DishLevelMapper dishLevelMapper;
 
     public List<DishDto.DishLevel> getDishLevelListByProfileId(
         DishVM.DishLevelList dishVM
@@ -30,6 +28,6 @@ public class DishService {
 
         List<DishLevel> dishLevelList = dishLevelRepository.findByProfile(profile);
 
-        return dishMapper.convertDishLevelListToDishLevelDtoList(dishLevelList);
+        return dishLevelMapper.convertDishLevelListToDishLevelDtoList(dishLevelList);
     }
 }
