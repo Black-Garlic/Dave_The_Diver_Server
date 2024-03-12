@@ -33,6 +33,11 @@ public class Path {
     public static final String PLANT = API + "/plant";
 
     /***********************************
+     ** Seasoning
+     ***********************************/
+    public static final String SEASONING = API + "/seasoning";
+
+    /***********************************
      ** Dish
      ***********************************/
     public static final String DISH = API + "/dish";

@@ -1,12 +1,13 @@
 package com.dave.the.diver.entity;
 
 import com.dave.the.diver.dto.SeasoningDto;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,6 +24,12 @@ public class Seasoning {
 
     @Column(name = "rank", nullable = false)
     private int rank;
+
+    @OneToMany(mappedBy = "seasoning",
+        fetch = FetchType.EAGER
+    )
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<SeasoningSourceRelation> seasoningSourceRelationList;
 
     public Seasoning(
         SeasoningDto seasoningDto

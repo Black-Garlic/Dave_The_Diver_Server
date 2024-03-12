@@ -1,5 +1,6 @@
 package com.dave.the.diver.dto;
 
+import com.dave.the.diver.entity.Seasoning;
 import lombok.Getter;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -7,6 +8,7 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class SeasoningDto {
@@ -14,7 +16,19 @@ public class SeasoningDto {
     private String seasoningId;
     private String name;
     private int rank;
-    private final List<String> seasoningSourceList;
+    private List<SourceDto> sourceDtoList;
+    private List<String> seasoningSourceList;
+
+    public SeasoningDto(
+        Seasoning seasoning
+    ) {
+        this.seasoningId = seasoning.getSeasoningId();
+        this.name = seasoning.getName();
+        this.rank = seasoning.getRank();
+        this.sourceDtoList = seasoning.getSeasoningSourceRelationList().stream()
+            .map(seasoningSourceRelation -> new SourceDto(seasoningSourceRelation.getSource()))
+            .collect(Collectors.toList());
+    }
 
     public SeasoningDto(
         String json
