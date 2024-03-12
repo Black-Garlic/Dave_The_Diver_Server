@@ -144,7 +144,7 @@ public class DataService {
 
             plantRepository.save(plant);
 
-            for (String plantSourceName : plantDto.getPlantSourceList()) {
+            for (String plantSourceName : plantDto.getSourceList()) {
                 this.generatePlantPlantSourceRelation(plant, sourceList, plantSourceName);
             }
         }

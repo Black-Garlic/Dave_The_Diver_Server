@@ -1,5 +1,6 @@
 package com.dave.the.diver.dto;
 
+import com.dave.the.diver.entity.Plant;
 import lombok.Getter;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -7,6 +8,7 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class PlantDto {
@@ -14,7 +16,19 @@ public class PlantDto {
     private String plantId;
     private String name;
     private int rank;
-    private final List<String> plantSourceList;
+    private List<SourceDto> sourceDtoList;
+    private List<String> sourceList;
+
+    public PlantDto(
+        Plant plant
+    ) {
+        this.plantId = plant.getPlantId();
+        this.name = plant.getName();
+        this.rank = plant.getRank();
+        this.sourceDtoList = plant.getPlantSourceRelationList().stream()
+            .map(plantSourceRelation -> new SourceDto(plantSourceRelation.getSource()))
+            .collect(Collectors.toList());
+    }
 
     public PlantDto(
         String json
@@ -33,13 +47,13 @@ public class PlantDto {
             this.rank = (int) jsonObject.get("rank");
         }
 
-        this.plantSourceList = new ArrayList<>();
+        this.sourceList = new ArrayList<>();
 
         if (jsonObject.has("source")) {
             JSONArray plantSourceJsonArray = (JSONArray) jsonObject.get("source");
 
             for (int i = 0; i < plantSourceJsonArray.length(); i++) {
-                plantSourceList.add((String) plantSourceJsonArray.get(i));
+                sourceList.add((String) plantSourceJsonArray.get(i));
             }
         }
     }

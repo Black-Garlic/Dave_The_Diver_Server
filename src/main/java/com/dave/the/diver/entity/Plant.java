@@ -4,6 +4,10 @@ import com.dave.the.diver.dto.PlantDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,6 +24,12 @@ public class Plant {
 
     @Column(name = "rank", nullable = false)
     private int rank;
+
+    @OneToMany(mappedBy = "plant",
+        fetch = FetchType.EAGER
+    )
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<PlantSourceRelation> plantSourceRelationList;
 
     public Plant(
         PlantDto plantDto

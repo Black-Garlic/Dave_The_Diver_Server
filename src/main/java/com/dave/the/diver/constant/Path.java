@@ -28,6 +28,11 @@ public class Path {
     public static final String FISH = API + "/fish";
 
     /***********************************
+     ** Plant
+     ***********************************/
+    public static final String PLANT = API + "/plant";
+
+    /***********************************
      ** Dish
      ***********************************/
     public static final String DISH = API + "/dish";
