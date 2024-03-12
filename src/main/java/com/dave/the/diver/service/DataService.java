@@ -31,6 +31,27 @@ public class DataService {
 
     private final DefaultDataService defaultDataService;
 
+    public void generateTotalDefaultData() throws JSONException {
+        // Fish
+        this.generateDefaultRegionData();
+        this.generateDefaultTimeData();
+        this.generateDefaultFishData();
+
+        // Plant
+        this.generateDefaultPlantSourceData();
+        this.generateDefaultPlantData();
+
+        // Seasoning
+        this.generateDefaultSeasoningSourceData();
+        this.generateDefaultSeasoningData();
+
+        // Dish
+        this.generateDefaultPartyData();
+        this.generateDefaultUnlockData();
+        this.generateDefaultDishData();
+        this.generateDefaultRecipeData();
+    }
+
     public void generateDefaultFishData() throws JSONException {
         List<FishDto> fishDtoList = defaultDataService.getDefaultFishDtoList();
         List<Region> regionList = regionRepository.findAll();
