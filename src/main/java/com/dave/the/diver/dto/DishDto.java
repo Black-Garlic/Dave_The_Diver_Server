@@ -2,6 +2,7 @@ package com.dave.the.diver.dto;
 
 import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Party;
+import com.dave.the.diver.entity.Unlock;
 import lombok.Getter;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -21,8 +22,10 @@ public class DishDto {
     private int maxCount = 1;
     private int maxLevel = 1;
     private int flame = 0;
+    private UnlockDto unlockDto;
     private String unlock;
-    private final List<String> partyList;
+    private List<PartyDto> partyDtoList;
+    private List<String> partyList;
 
     public DishDto(
         Dish dish
@@ -36,11 +39,11 @@ public class DishDto {
         this.flame = dish.getFlame();
 
         if (dish.getUnlock() != null) {
-            this.unlock = dish.getUnlock().getName();
+            this.unlockDto = new UnlockDto(dish.getUnlock());
         }
 
-        this.partyList = dish.getDishPartyRelationList().stream()
-            .map(dishPartyRelation -> dishPartyRelation.getParty().getName())
+        this.partyDtoList = dish.getDishPartyRelationList().stream()
+            .map(dishPartyRelation -> new PartyDto(dishPartyRelation.getParty()))
             .collect(Collectors.toList());
     }
 
@@ -100,6 +103,14 @@ public class DishDto {
         private final String color;
 
         public PartyDto(
+            Party party
+        ) {
+            this.partyId = party.getPartyId();
+            this.name = party.getName();
+            this.color = party.getColor();
+        }
+
+        public PartyDto(
             String partyId,
             String name,
             String color
@@ -113,8 +124,15 @@ public class DishDto {
     @Getter
     public static class UnlockDto {
 
-        private String unlockId;
-        private String name;
+        private final String unlockId;
+        private final String name;
+
+        public UnlockDto(
+            Unlock unlock
+        ) {
+            this.unlockId = unlock.getUnlockId();
+            this.name = unlock.getName();
+        }
 
         public UnlockDto(
             String unlockId,
