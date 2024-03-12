@@ -1,9 +1,6 @@
 package com.dave.the.diver.constant;
 
-import com.dave.the.diver.entity.Party;
-import com.dave.the.diver.entity.Region;
-import com.dave.the.diver.entity.Time;
-import com.dave.the.diver.entity.Unlock;
+import com.dave.the.diver.entity.*;
 import lombok.Getter;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -18,6 +15,7 @@ public class Data {
     public static class FishInfo {
         private String fishId;
         private String name;
+        private int rank;
         private String region;
         private String time;
 
@@ -32,6 +30,10 @@ public class Data {
 
             if (jsonObject.has("name")) {
                 this.name = (String) jsonObject.get("name");
+            }
+
+            if (jsonObject.has("rank")) {
+                this.rank = (int) jsonObject.get("rank");
             }
 
             if (jsonObject.has("region")) {
@@ -51,147 +53,147 @@ public class Data {
         public Fish() throws JSONException {
             this.fishInfoList = new ArrayList<>();
 
-            fishInfoList.add(new FishInfo("{\"id\":\"Clownfish\",\"name\":\"흰동가리\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Comber\",\"name\":\"콤버\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Cardinal_Fish\",\"name\":\"지중해카디널피쉬\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Sea_Goldie\",\"name\":\"금강바리\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Pyramid_Butterflyfish\",\"name\":\"안개나비고기\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Yellow_Tang\",\"name\":\"옐로우탱\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Salema_Porgy\",\"name\":\"사르파살파\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Orbicular_Batfish\",\"name\":\"원반제비활치\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Blue_Tang\",\"name\":\"블루탱\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Rainbow_Wrasse\",\"name\":\"무지개놀래기\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Lagoon_Triggerfish\",\"name\":\"배주름쥐치\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Small_Spotted_Dart\",\"name\":\"빨판매가리\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Yellowback_Fusilier\",\"name\":\"황등어\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Ornate_Wrasse\",\"name\":\"오네이트놀래기\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Longfin_Batfish\",\"name\":\"깃털제비활치\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Mediterranean_Parrotfish\",\"name\":\"지중해비늘돔\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Redtooth_Triggerfish\",\"name\":\"붉은이빨쥐치\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Black_And_White_Snapper\",\"name\":\"블랙스내퍼\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Green_Humphead_Parrotfish\",\"name\":\"버팔로피쉬\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Barrel_Jellyfish\",\"name\":\"배럴해파리\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Fried_Egg_Jellyfish\",\"name\":\"달걀프라이해파리\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Whitetip_Reefshark\",\"name\":\"백기흉상어\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Starry_Puffer\",\"name\":\"꺼끌복\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Red_Lionfish\",\"name\":\"쏠배감펭\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Titan_Triggerfish\",\"name\":\"타이탄트리거피쉬\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Bluefin_Tuna\",\"name\":\"참다랑어\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Yellowfin_Tuna\",\"name\":\"황다랑어\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Flame_Angelfish\",\"name\":\"라마엔젤피쉬\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Sheepshead\",\"name\":\"혹돔\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Emperor_Angelfish\",\"name\":\"황제엔젤피쉬\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Stingray\",\"name\":\"노랑가오리\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Marbled_Electric_Ray\",\"name\":\"마블전기가오리\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Whiteleg_Shrimp\",\"name\":\"흰다리새우\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Striped_Catfish\",\"name\":\"쏠종개\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Purple_Sea_Urchin\",\"name\":\"보라성게\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Shortfin_Mako\",\"name\":\"청상아리\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Marlin\",\"name\":\"청새치\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Thresher_Shark\",\"name\":\"환도상어\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"American_Lobster\",\"name\":\"미국바닷가재\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"European_Lobster\",\"name\":\"유렵바닷가재\",\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Bluehead_Tilefish\",\"name\":\"블루헤드타일피쉬\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Clown_Frogfish\",\"name\":\"무당씬벵이\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Painted_Comber\",\"name\":\"페인티드콤버\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Bigeye_Scad\",\"name\":\"새가라지\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Striped_Red_Mullet\",\"name\":\"노랑촉수\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Mackerel_Scad\",\"name\":\"풀가라지\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Harleqiun_Hind\",\"name\":\"청줄바리\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Bigeye_Trevally\",\"name\":\"줄전갱이\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Coral_Trout\",\"name\":\"무늬바리\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Grey_Triggerfish\",\"name\":\"갈쥐치\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Atlantic_Bonito\",\"name\":\"대서양보니토\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"White_Trevally\",\"name\":\"흑점줄전갱이\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Cuttlefish\",\"name\":\"갑오징어\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Dusky_Grouper\",\"name\":\"머구리농어\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Atlantic_Mackerel\",\"name\":\"대서양고등어\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Giant_Trevally\",\"name\":\"무명갈전갱이\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"White_Spotted_Jellyfish\",\"name\":\"흰점박이해파리\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Tiger_Shark\",\"name\":\"뱀상어\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Great_Barracuda\",\"name\":\"큰꼬치고기\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Narrow_Barred_Spanish_Mackerel\",\"name\":\"동갈삼치\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Longnose_Sawshark\",\"name\":\"톱상어\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Atlantic_Anglerfish\",\"name\":\"대서양아귀\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Sally_Lightfoot_Crab\",\"name\":\"갈라파고스붉은게\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Black_Tiger_Shrimp\",\"name\":\"블랙타이거새우\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Smooth_Hammerhead\",\"name\":\"귀상어\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Sailfish\",\"name\":\"돛새치\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"California_Spiny_Lobster\",\"name\":\"캘리포니아닭새우\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Tropical_Rock_Lobster\",\"name\":\"비단닭새우\",\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Chambered_Nautilus\",\"name\":\"앵무조개\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Fangtooth\",\"name\":\"귀신고기\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Frilled_Shark\",\"name\":\"주름상어\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Bluespotted_Stargazer\",\"name\":\"푸렁통구멍\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Rhinochimaeridae\",\"name\":\"코은상어\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Spider_Crab\",\"name\":\"키다리게\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Megamouth_Shark\",\"name\":\"메가마우스상어\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Cookiecutter_Shark\",\"name\":\"쿠키커터상어\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Clione\",\"name\":\"클리오네\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Sea_Toad\",\"name\":\"점씬벵이\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Salmon_Snailfish\",\"name\":\"분홍꼼치\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Pacific_Fanfish\",\"name\":\"벤텐어\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Threethooth_Puffer\",\"name\":\"불뚝복\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Comb_Jelly\",\"name\":\"감투빗해파리\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Blood_Belly_Comb_Jellyfish\",\"name\":\"붉은배빗해파리\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Red_Bream\",\"name\":\"금눈돔\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Norway_Lobster\",\"name\":\"네점발빨간새우\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Eastern_Rock_Lobster\",\"name\":\"동부바위바닷가재\",\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Clearfin_Lionfish\",\"name\":\"방사쏠배감펭\",\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Longspine_Squirrelfish\",\"name\":\"롱스파인 다람쥐고기\",\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Longspine_Porcupinefish\",\"name\":\"가시복\",\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Box_Jellyfish\",\"name\":\"상자해파리\",\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Moray_Eel\",\"name\":\"곰치\",\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Blacktip_Reefshark\",\"name\":\"흑기흉상어\",\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Copper_Shark\",\"name\":\"무태상어\",\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Zebra_Shark\",\"name\":\"지브라상어\",\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"White_Shrimp\",\"name\":\"흰보리새우\",\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Red_Banded_Lobster\",\"name\":\"가시발새우\",\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Blue_Lobster\",\"name\":\"블루랍스터\",\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Blackfin_Barracuda\",\"name\":\"검정핀꼬치고기\",\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Spear_Squid\",\"name\":\"화살오징어\",\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Humboldt_Squid\",\"name\":\"훔볼트오징어\",\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Devil_Scorpion_Fish\",\"name\":\"데빌스콜피온피쉬\",\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Fan_Lobster\",\"name\":\"부채새우\",\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Crystal_Lobster\",\"name\":\"크리스탈랍스터\",\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Peacock_Squid\",\"name\":\"공작오징어\",\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Dumbo_Octopus\",\"name\":\"덤보문어\",\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Barreleye\",\"name\":\"배럴아이\",\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Blob_Fish\",\"name\":\"블롭피쉬\",\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Vampire_Squid\",\"name\":\"흡혈오징어\",\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Pelican_Eel\",\"name\":\"펠리칸장어\",\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Arctic_Cod\",\"name\":\"극지대구\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Gelatinous_Snailfish\",\"name\":\"남극꼼치\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Antarctic_Octopus\",\"name\":\"남극문어\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Greenland_Shark\",\"name\":\"그린란드상어\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Polar_Eelpout\",\"name\":\"북극등가시치\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Porbeagle_Shark\",\"name\":\"비악상어\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Ice_Fish\",\"name\":\"아이스피쉬\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Capelin\",\"name\":\"열빙어\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Narwhal\",\"name\":\"일각고래\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Haddock\",\"name\":\"해덕대구\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Starry_Skate\",\"name\":\"땅가오리\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Arctic_Telescope_Fish\",\"name\":\"북극 망원경 물고기\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Alaska_Pollock\",\"name\":\"알래스카 명태\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Lumpfish\",\"name\":\"럼프피쉬\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Snub_Nosed_Spiny_Eel\",\"name\":\"들창코가시장어\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Golden_King_Crab\",\"name\":\"황색왕게\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Snow_Crab\",\"name\":\"대게\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Horsehair_Crab\",\"name\":\"털게\",\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Waptia_Fieldensis\",\"name\":\"왑티아 필덴시스\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Pikaia\",\"name\":\"피카이아\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Allenypterus\",\"name\":\"알레니프테루스\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Qingmendous\",\"name\":\"칭멘도스\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Falcatus\",\"name\":\"팔카투스\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Drepanaspis\",\"name\":\"드레파나스피스\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Dunkleosteus\",\"name\":\"둔클레오스테우스\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Megalograptus\",\"name\":\"메갈로그랍투스\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Xenacanthus\",\"name\":\"제나칸투스\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Dollocaris_Ingens\",\"name\":\"돌로카리스인겐스\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Tokummia_Katalepsis\",\"name\":\"토큐미아카탈렙시스\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Anomalocaris\",\"name\":\"아노말로칼리스\",\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Seahorse\",\"name\":\"해마\",\"region\":\"기타\",\"time\":\"낮\"}"));
-            fishInfoList.add(new FishInfo("{\"id\":\"Seadragon\",\"name\":\"해룡\",\"region\":\"기타\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Clownfish\",\"name\":\"흰동가리\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Comber\",\"name\":\"콤버\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Cardinal_Fish\",\"name\":\"지중해카디널피쉬\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Sea_Goldie\",\"name\":\"금강바리\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Pyramid_Butterflyfish\",\"name\":\"안개나비고기\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Yellow_Tang\",\"name\":\"옐로우탱\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Salema_Porgy\",\"name\":\"사르파살파\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Orbicular_Batfish\",\"name\":\"원반제비활치\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Blue_Tang\",\"name\":\"블루탱\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Rainbow_Wrasse\",\"name\":\"무지개놀래기\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Lagoon_Triggerfish\",\"name\":\"배주름쥐치\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Small_Spotted_Dart\",\"name\":\"빨판매가리\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Yellowback_Fusilier\",\"name\":\"황등어\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Ornate_Wrasse\",\"name\":\"오네이트놀래기\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Longfin_Batfish\",\"name\":\"깃털제비활치\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Mediterranean_Parrotfish\",\"name\":\"지중해비늘돔\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Redtooth_Triggerfish\",\"name\":\"붉은이빨쥐치\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Black_And_White_Snapper\",\"name\":\"블랙스내퍼\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Green_Humphead_Parrotfish\",\"name\":\"버팔로피쉬\",\"rank\":3,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Barrel_Jellyfish\",\"name\":\"배럴해파리\",\"rank\":2,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Fried_Egg_Jellyfish\",\"name\":\"달걀프라이해파리\",\"rank\":2,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Whitetip_Reefshark\",\"name\":\"백기흉상어\",\"rank\":4,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Starry_Puffer\",\"name\":\"꺼끌복\",\"rank\":3,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Red_Lionfish\",\"name\":\"쏠배감펭\",\"rank\":2,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Titan_Triggerfish\",\"name\":\"타이탄트리거피쉬\",\"rank\":2,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Bluefin_Tuna\",\"name\":\"참다랑어\",\"rank\":7,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Yellowfin_Tuna\",\"name\":\"황다랑어\",\"rank\":7,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Flame_Angelfish\",\"name\":\"라마엔젤피쉬\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Sheepshead\",\"name\":\"혹돔\",\"rank\":5,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Emperor_Angelfish\",\"name\":\"황제엔젤피쉬\",\"rank\":1,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Stingray\",\"name\":\"노랑가오리\",\"rank\":6,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Marbled_Electric_Ray\",\"name\":\"마블전기가오리\",\"rank\":6,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Whiteleg_Shrimp\",\"name\":\"흰다리새우\",\"rank\":5,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Striped_Catfish\",\"name\":\"쏠종개\",\"rank\":5,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Purple_Sea_Urchin\",\"name\":\"보라성게\",\"rank\":5,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Shortfin_Mako\",\"name\":\"청상아리\",\"rank\":8,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Marlin\",\"name\":\"청새치\",\"rank\":8,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Thresher_Shark\",\"name\":\"환도상어\",\"rank\":9,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"American_Lobster\",\"name\":\"미국바닷가재\",\"rank\":8,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"European_Lobster\",\"name\":\"유렵바닷가재\",\"rank\":5,\"region\":\"블루홀 초입\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Bluehead_Tilefish\",\"name\":\"블루헤드타일피쉬\",\"rank\":1,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Clown_Frogfish\",\"name\":\"무당씬벵이\",\"rank\":1,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Painted_Comber\",\"name\":\"페인티드콤버\",\"rank\":1,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Bigeye_Scad\",\"name\":\"새가라지\",\"rank\":1,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Striped_Red_Mullet\",\"name\":\"노랑촉수\",\"rank\":1,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Mackerel_Scad\",\"name\":\"풀가라지\",\"rank\":1,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Harleqiun_Hind\",\"name\":\"청줄바리\",\"rank\":2,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Bigeye_Trevally\",\"name\":\"줄전갱이\",\"rank\":2,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Coral_Trout\",\"name\":\"무늬바리\",\"rank\":2,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Grey_Triggerfish\",\"name\":\"갈쥐치\",\"rank\":2,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Atlantic_Bonito\",\"name\":\"대서양보니토\",\"rank\":2,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"White_Trevally\",\"name\":\"흑점줄전갱이\",\"rank\":2,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Cuttlefish\",\"name\":\"갑오징어\",\"rank\":2,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Dusky_Grouper\",\"name\":\"머구리농어\",\"rank\":3,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Atlantic_Mackerel\",\"name\":\"대서양고등어\",\"rank\":3,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Giant_Trevally\",\"name\":\"무명갈전갱이\",\"rank\":4,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"White_Spotted_Jellyfish\",\"name\":\"흰점박이해파리\",\"rank\":2,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Tiger_Shark\",\"name\":\"뱀상어\",\"rank\":6,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Great_Barracuda\",\"name\":\"큰꼬치고기\",\"rank\":3,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Narrow_Barred_Spanish_Mackerel\",\"name\":\"동갈삼치\",\"rank\":3,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Longnose_Sawshark\",\"name\":\"톱상어\",\"rank\":6,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Atlantic_Anglerfish\",\"name\":\"대서양아귀\",\"rank\":4,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Sally_Lightfoot_Crab\",\"name\":\"갈라파고스붉은게\",\"rank\":7,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Black_Tiger_Shrimp\",\"name\":\"블랙타이거새우\",\"rank\":5,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Smooth_Hammerhead\",\"name\":\"귀상어\",\"rank\":9,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Sailfish\",\"name\":\"돛새치\",\"rank\":9,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"California_Spiny_Lobster\",\"name\":\"캘리포니아닭새우\",\"rank\":5,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Tropical_Rock_Lobster\",\"name\":\"비단닭새우\",\"rank\":8,\"region\":\"블루홀 중간 수역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Chambered_Nautilus\",\"name\":\"앵무조개\",\"rank\":5,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Fangtooth\",\"name\":\"귀신고기\",\"rank\":5,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Frilled_Shark\",\"name\":\"주름상어\",\"rank\":7,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Bluespotted_Stargazer\",\"name\":\"푸렁통구멍\",\"rank\":6,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Rhinochimaeridae\",\"name\":\"코은상어\",\"rank\":6,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Spider_Crab\",\"name\":\"키다리게\",\"rank\":6,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Megamouth_Shark\",\"name\":\"메가마우스상어\",\"rank\":7,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Cookiecutter_Shark\",\"name\":\"쿠키커터상어\",\"rank\":6,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Clione\",\"name\":\"클리오네\",\"rank\":5,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Sea_Toad\",\"name\":\"점씬벵이\",\"rank\":5,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Salmon_Snailfish\",\"name\":\"분홍꼼치\",\"rank\":5,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Pacific_Fanfish\",\"name\":\"벤텐어\",\"rank\":5,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Threethooth_Puffer\",\"name\":\"불뚝복\",\"rank\":5,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Comb_Jelly\",\"name\":\"감투빗해파리\",\"rank\":6,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Blood_Belly_Comb_Jellyfish\",\"name\":\"붉은배빗해파리\",\"rank\":6,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Red_Bream\",\"name\":\"금눈돔\",\"rank\":5,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Norway_Lobster\",\"name\":\"네점발빨간새우\",\"rank\":5,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Eastern_Rock_Lobster\",\"name\":\"동부바위바닷가재\",\"rank\":8,\"region\":\"블루홀 심해\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Clearfin_Lionfish\",\"name\":\"방사쏠배감펭\",\"rank\":4,\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Longspine_Squirrelfish\",\"name\":\"롱스파인 다람쥐고기\",\"rank\":5,\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Longspine_Porcupinefish\",\"name\":\"가시복\",\"rank\":5,\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Box_Jellyfish\",\"name\":\"상자해파리\",\"rank\":5,\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Moray_Eel\",\"name\":\"곰치\",\"rank\":5,\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Blacktip_Reefshark\",\"name\":\"흑기흉상어\",\"rank\":6,\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Copper_Shark\",\"name\":\"무태상어\",\"rank\":6,\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Zebra_Shark\",\"name\":\"지브라상어\",\"rank\":8,\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"White_Shrimp\",\"name\":\"흰보리새우\",\"rank\":7,\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Red_Banded_Lobster\",\"name\":\"가시발새우\",\"rank\":5,\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Blue_Lobster\",\"name\":\"블루랍스터\",\"rank\":8,\"region\":\"블루홀 초입\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Blackfin_Barracuda\",\"name\":\"검정핀꼬치고기\",\"rank\":5,\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Spear_Squid\",\"name\":\"화살오징어\",\"rank\":5,\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Humboldt_Squid\",\"name\":\"훔볼트오징어\",\"rank\":8,\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Devil_Scorpion_Fish\",\"name\":\"데빌스콜피온피쉬\",\"rank\":8,\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Fan_Lobster\",\"name\":\"부채새우\",\"rank\":5,\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Crystal_Lobster\",\"name\":\"크리스탈랍스터\",\"rank\":8,\"region\":\"블루홀 중간 수역\",\"time\":\"밤\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Peacock_Squid\",\"name\":\"공작오징어\",\"rank\":7,\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Dumbo_Octopus\",\"name\":\"덤보문어\",\"rank\":7,\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Barreleye\",\"name\":\"배럴아이\",\"rank\":7,\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Blob_Fish\",\"name\":\"블롭피쉬\",\"rank\":7,\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Vampire_Squid\",\"name\":\"흡혈오징어\",\"rank\":8,\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Pelican_Eel\",\"name\":\"펠리칸장어\",\"rank\":9,\"region\":\"빙하 통로\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Arctic_Cod\",\"name\":\"극지대구\",\"rank\":8,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Gelatinous_Snailfish\",\"name\":\"남극꼼치\",\"rank\":8,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Antarctic_Octopus\",\"name\":\"남극문어\",\"rank\":9,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Greenland_Shark\",\"name\":\"그린란드상어\",\"rank\":9,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Polar_Eelpout\",\"name\":\"북극등가시치\",\"rank\":8,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Porbeagle_Shark\",\"name\":\"비악상어\",\"rank\":9,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Ice_Fish\",\"name\":\"아이스피쉬\",\"rank\":8,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Capelin\",\"name\":\"열빙어\",\"rank\":8,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Narwhal\",\"name\":\"일각고래\",\"rank\":9,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Haddock\",\"name\":\"해덕대구\",\"rank\":8,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Starry_Skate\",\"name\":\"땅가오리\",\"rank\":9,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Arctic_Telescope_Fish\",\"name\":\"북극 망원경 물고기\",\"rank\":8,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Alaska_Pollock\",\"name\":\"알래스카 명태\",\"rank\":8,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Lumpfish\",\"name\":\"럼프피쉬\",\"rank\":8,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Snub_Nosed_Spiny_Eel\",\"name\":\"들창코가시장어\",\"rank\":9,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Golden_King_Crab\",\"name\":\"황색왕게\",\"rank\":8,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Snow_Crab\",\"name\":\"대게\",\"rank\":8,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Horsehair_Crab\",\"name\":\"털게\",\"rank\":9,\"region\":\"빙하 지역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Waptia_Fieldensis\",\"name\":\"왑티아 필덴시스\",\"rank\":9,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Pikaia\",\"name\":\"피카이아\",\"rank\":9,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Allenypterus\",\"name\":\"알레니프테루스\",\"rank\":9,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Qingmendous\",\"name\":\"칭멘도스\",\"rank\":9,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Falcatus\",\"name\":\"팔카투스\",\"rank\":9,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Drepanaspis\",\"name\":\"드레파나스피스\",\"rank\":9,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Dunkleosteus\",\"name\":\"둔클레오스테우스\",\"rank\":9,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Megalograptus\",\"name\":\"메갈로그랍투스\",\"rank\":9,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Xenacanthus\",\"name\":\"제나칸투스\",\"rank\":9,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Dollocaris_Ingens\",\"name\":\"돌로카리스인겐스\",\"rank\":8,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Tokummia_Katalepsis\",\"name\":\"토큐미아카탈렙시스\",\"rank\":9,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Anomalocaris\",\"name\":\"아노말로칼리스\",\"rank\":9,\"region\":\"열수 분출 구역\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Seahorse\",\"name\":\"해마\",\"rank\":4,\"region\":\"기타\",\"time\":\"낮\"}"));
+            fishInfoList.add(new FishInfo("{\"id\":\"Seadragon\",\"name\":\"해룡\",\"rank\":8,\"region\":\"기타\",\"time\":\"낮\"}"));
         }
     }
 
@@ -221,6 +223,94 @@ public class Data {
 
             timeList.add(new com.dave.the.diver.entity.Time("DAY", "낮", "blue"));
             timeList.add(new com.dave.the.diver.entity.Time("NIGHT", "밤", "black"));
+        }
+    }
+
+    @Getter
+    public static class PlantInfo {
+        private String plantId;
+        private String name;
+        private int rank;
+        private final List<String> plantSourceList;
+
+        public PlantInfo(
+            String json
+        ) throws JSONException {
+            JSONObject jsonObject = new JSONObject(json);
+
+            if (jsonObject.has("id")) {
+                this.plantId = (String) jsonObject.get("id");
+            }
+
+            if (jsonObject.has("name")) {
+                this.name = (String) jsonObject.get("name");
+            }
+
+            if (jsonObject.has("rank")) {
+                this.rank = (int) jsonObject.get("rank");
+            }
+
+            this.plantSourceList = new ArrayList<>();
+
+            if (jsonObject.has("source")) {
+                JSONArray plantSourceJsonArray = (JSONArray) jsonObject.get("source");
+
+                for (int i = 0; i < plantSourceJsonArray.length(); i++) {
+                    plantSourceList.add((String) plantSourceJsonArray.get(i));
+                }
+            }
+        }
+    }
+
+    @Getter
+    public static class Plant {
+        List<PlantInfo> plantInfoList;
+
+        public Plant() throws JSONException {
+            this.plantInfoList = new ArrayList<>();
+
+            plantInfoList.add(new PlantInfo("{\"id\":\"Grade_A_Egg\",\"name\":\"1등급란\",\"rank\":4,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Eggplant\",\"name\":\"가지\",\"rank\":4,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Kajime\",\"name\":\"감태\",\"rank\":2,\"source\":[\"0 ~ 130m\",\"해초 농장\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Black_Coral\",\"name\":\"검은산호\",\"rank\":2,\"source\":[\"빙하 지역\",\"해초 농장\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Egg\",\"name\":\"계란\",\"rank\":4,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Southern_Bull_Kelp\",\"name\":\"남부황소다시마\",\"rank\":2,\"source\":[\"빙하 지역\",\"해초 농장\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Kelp\",\"name\":\"다시마\",\"rank\":2,\"source\":[\"50 ~ 130m\",\"해초 농장\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Carrot\",\"name\":\"당근\",\"rank\":4,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Garlic\",\"name\":\"마늘\",\"rank\":4,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Seaweed\",\"name\":\"미역\",\"rank\":2,\"source\":[\"50 ~ 130m\",\"해초 농장\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Wheat\",\"name\":\"밀\",\"rank\":4,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Buckbean\",\"name\":\"바다조름\",\"rank\":2,\"source\":[\"빙하 지역\",\"해초 농장\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Sea_Grape\",\"name\":\"바다포도\",\"rank\":2,\"source\":[\"종유 동굴\",\"해초 농장\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Cherry_Tomato\",\"name\":\"방울토마토\",\"rank\":4,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Rice\",\"name\":\"백미\",\"rank\":3,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Bladderwrack\",\"name\":\"블래더랙\",\"rank\":2,\"source\":[\"빙하 해초 동굴\",\"해초 농장\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Onion\",\"name\":\"양파\",\"rank\":4,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Cucumber\",\"name\":\"오이\",\"rank\":4,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Agar\",\"name\":\"우뭇가사리\",\"rank\":2,\"source\":[\"0 ~ 50m\",\"해초 농장\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Bean\",\"name\":\"콩\",\"rank\":4,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Habanero\",\"name\":\"하바네로\",\"rank\":4,\"source\":[\"텃밭\",\"오토\",\"장고\"]}"));
+            plantInfoList.add(new PlantInfo("{\"id\":\"Hyalonema\",\"name\":\"히알로네마\",\"rank\":3,\"source\":[\"빙하 해초 동굴\",\"해초 농장\"]}"));
+        }
+    }
+
+    @Getter
+    public static class PlantSource {
+        List<com.dave.the.diver.entity.PlantSource> plantSourceList;
+
+        public PlantSource() {
+            this.plantSourceList = new ArrayList<>();
+
+            plantSourceList.add(new com.dave.the.diver.entity.PlantSource("FARM", "텃밭", "darkgoldenrod"));
+            plantSourceList.add(new com.dave.the.diver.entity.PlantSource("BLUE_HOLE", "0 ~ 130m", "geekblue"));
+            plantSourceList.add(new com.dave.the.diver.entity.PlantSource("BLUE_HOLE_SHALLOWS", "0 ~ 50m", "cyan"));
+            plantSourceList.add(new com.dave.the.diver.entity.PlantSource("BLUE_HOLE_MEDIUM_DEPTH", "50 ~ 130m", "blue"));
+            plantSourceList.add(new com.dave.the.diver.entity.PlantSource("CAVE", "종유 동굴", "dimgrey"));
+            plantSourceList.add(new com.dave.the.diver.entity.PlantSource("GLACIAL", "빙하 지역", "deepskyblue"));
+            plantSourceList.add(new com.dave.the.diver.entity.PlantSource("GLACIAL_SEAWEED", "빙하 해초 동굴", "dodgerblue"));
+            plantSourceList.add(new com.dave.the.diver.entity.PlantSource("SEAWEED_FARM", "해초 농장", "forestgreen"));
+            plantSourceList.add(new com.dave.the.diver.entity.PlantSource("OTTO", "오토", "goldenrod"));
+            plantSourceList.add(new com.dave.the.diver.entity.PlantSource("DJANGO", "장고", "black"));
         }
     }
 

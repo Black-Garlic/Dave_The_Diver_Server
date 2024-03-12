@@ -56,6 +56,34 @@ public class DataController {
         return result;
     }
 
+    @PostMapping(path = Path.DATA_PLANT, produces = "application/json")
+    public Result generateDefaultPlantData() {
+        Result result = new Result();
+
+        try {
+            dataService.generateDefaultPlantData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @PostMapping(path = Path.DATA_PLANT_SOURCE, produces = "application/json")
+    public Result generateDefaultPlantSourceData() {
+        Result result = new Result();
+
+        try {
+            dataService.generateDefaultPlantSourceData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
     @PostMapping(path = Path.DATA_DISH, produces = "application/json")
     public Result generateDefaultDish() {
         Result result = new Result();

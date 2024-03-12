@@ -14,6 +14,8 @@ public class Path {
     public static final String DATA_FISH = DATA + "/fish";
     public static final String DATA_REGION = DATA + "/region";
     public static final String DATA_TIME = DATA + "/time";
+    public static final String DATA_PLANT = DATA + "/plant";
+    public static final String DATA_PLANT_SOURCE = DATA + "/plant-source";
     public static final String DATA_DISH = DATA + "/dish";
     public static final String DATA_PARTY = DATA + "/party";
     public static final String DATA_UNLOCK = DATA + "/unlock";

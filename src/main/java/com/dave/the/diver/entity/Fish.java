@@ -19,6 +19,9 @@ public class Fish {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
+    @Column(name = "rank")
+    private int rank = 1;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "region_id")
@@ -36,6 +39,7 @@ public class Fish {
     ) {
         this.fishId = fishInfo.getFishId();
         this.name = fishInfo.getName();
+        this.rank = fishInfo.getRank();
         this.region = region;
         this.time = time;
     }
@@ -46,6 +50,7 @@ public class Fish {
         Time time
     ) {
         this.name = fishInfo.getName();
+        this.rank = fishInfo.getRank();
         this.region = region;
         this.time = time;
     }

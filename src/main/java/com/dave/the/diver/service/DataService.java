@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,9 @@ public class DataService {
     private final FishRepository fishRepository;
     private final RegionRepository regionRepository;
     private final TimeRepository timeRepository;
+    private final PlantRepository plantRepository;
+    private final PlantPlantSourceRelationRepository plantPlantSourceRelationRepository;
+    private final PlantSourceRepository plantSourceRepository;
     private final DishRepository dishRepository;
     private final DishPartyRelationRepository dishPartyRelationRepository;
     private final PartyRepository partyRepository;
@@ -118,6 +122,70 @@ public class DataService {
         }
     }
 
+    public void generateDefaultPlantData() throws JSONException {
+        Data.Plant plantData = new Data.Plant();
+
+        List<PlantSource> plantSourceList = plantSourceRepository.findAll();
+
+        for (Data.PlantInfo plantInfo : plantData.getPlantInfoList()) {
+            Plant plant;
+
+            Optional<Plant> plantOptional = plantRepository.findById(plantInfo.getPlantId());
+
+            if (plantOptional.isEmpty()) {
+                plant = new Plant(plantInfo);
+            } else {
+                plant = plantOptional.get();
+
+                plant.updatePlant(plantInfo);
+            }
+
+            plantRepository.save(plant);
+
+            for (String plantSourceName : plantInfo.getPlantSourceList()) {
+                this.generatePlantPlantSourceRelation(plant, plantSourceList, plantSourceName);
+            }
+        }
+    }
+
+    private void generatePlantPlantSourceRelation(
+        Plant plant,
+        List<PlantSource> plantSourceList,
+        String plantSourceName
+    ) {
+        if (plantSourceName == null) {
+            return;
+        }
+
+        for (PlantSource plantSource : plantSourceList) {
+            boolean plantSourceEqual = plantSource.getName().equals(plantSourceName);
+            boolean exist = plantPlantSourceRelationRepository.findByPlantAndPlantSource(plant, plantSource).isPresent();
+
+            if (plantSourceEqual && !exist) {
+                PlantPlantSourceRelation plantPlantSourceRelation = new PlantPlantSourceRelation(plant, plantSource);
+                plantPlantSourceRelationRepository.save(plantPlantSourceRelation);
+            }
+        }
+    }
+
+    public void generateDefaultPlantSourceData() {
+        Data.PlantSource plantSourceData = new Data.PlantSource();
+
+        for (PlantSource plantSource : plantSourceData.getPlantSourceList()) {
+            Optional<PlantSource> plantSourceOptional = plantSourceRepository.findById(plantSource.getPlantSourceId());
+
+            if (plantSourceOptional.isEmpty()) {
+                plantSourceRepository.save(plantSource);
+            } else {
+                PlantSource existPlantSource = plantSourceOptional.get();
+
+                existPlantSource.updatePlantSource(plantSource.getName(), plantSource.getColor());
+
+                plantSourceRepository.save(existPlantSource);
+            }
+        }
+    }
+
     public void generateDefaultDishData() throws JSONException {
         Data.Dish dishData = new Data.Dish();
 
@@ -169,6 +237,10 @@ public class DataService {
         List<Party> partyList,
         String partyName
     ) {
+        if (partyName == null) {
+            return;
+        }
+
         for (Party party : partyList) {
             boolean partyEqual = party.getName().equals(partyName);
             boolean exist = dishPartyRelationRepository.findByDishAndParty(dish, party).isPresent();
