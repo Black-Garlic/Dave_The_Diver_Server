@@ -1,6 +1,5 @@
 package com.dave.the.diver.entity;
 
-import com.dave.the.diver.constant.Data;
 import com.dave.the.diver.dto.SeasoningDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

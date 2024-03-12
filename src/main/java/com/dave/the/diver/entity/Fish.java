@@ -1,6 +1,5 @@
 package com.dave.the.diver.entity;
 
-import com.dave.the.diver.constant.Data;
 import com.dave.the.diver.dto.FishDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

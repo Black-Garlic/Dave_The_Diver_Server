@@ -1,6 +1,5 @@
 package com.dave.the.diver.service;
 
-import com.dave.the.diver.constant.Data;
 import com.dave.the.diver.dto.DishDto;
 import com.dave.the.diver.dto.FishDto;
 import com.dave.the.diver.dto.PlantDto;
@@ -11,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,13 +31,14 @@ public class DataService {
     private final PartyRepository partyRepository;
     private final UnlockRepository unlockRepository;
 
-    public void generateDefaultFishData() throws JSONException {
-        Data.Fish fishData = new Data.Fish();
+    private final DefaultDataService defaultDataService;
 
+    public void generateDefaultFishData() throws JSONException {
+        List<FishDto> fishDtoList = defaultDataService.getDefaultFishDtoList();
         List<Region> regionList = regionRepository.findAll();
         List<Time> timeList = timeRepository.findAll();
 
-        for (FishDto fishDto : fishData.getFishDtoList()) {
+        for (FishDto fishDto : fishDtoList) {
             Fish fish;
 
             Optional<Fish> fishOptional = fishRepository.findById(fishDto.getFishId());
@@ -94,9 +93,9 @@ public class DataService {
     }
 
     public void generateDefaultRegionData() {
-        Data.Region regionData = new Data.Region();
+        List<FishDto.RegionDto> regionDtoList = defaultDataService.getDefaultRegionDtoList();
 
-        for (FishDto.RegionDto regionDto : regionData.getRegionDtoList()) {
+        for (FishDto.RegionDto regionDto : regionDtoList) {
             Region region;
 
             Optional<Region> regionOptional = regionRepository.findById(regionDto.getRegionId());
@@ -113,9 +112,9 @@ public class DataService {
     }
 
     public void generateDefaultTimeData() {
-        Data.Time timeData = new Data.Time();
+        List<FishDto.TimeDto> timeDtoList = defaultDataService.getDefaultTimeDtoList();
 
-        for (FishDto.TimeDto timeDto : timeData.getTimeDtoList()) {
+        for (FishDto.TimeDto timeDto : timeDtoList) {
             Time time;
 
             Optional<Time> timeOptional = timeRepository.findById(timeDto.getTimeId());
@@ -132,11 +131,10 @@ public class DataService {
     }
 
     public void generateDefaultPlantData() throws JSONException {
-        Data.Plant plantData = new Data.Plant();
-
+        List<PlantDto> plantDtoList = defaultDataService.getDefaultPlantDtoList();
         List<PlantSource> plantSourceList = plantSourceRepository.findAll();
 
-        for (PlantDto plantDto : plantData.getPlantDtoList()) {
+        for (PlantDto plantDto : plantDtoList) {
             Plant plant;
 
             Optional<Plant> plantOptional = plantRepository.findById(plantDto.getPlantId());
@@ -175,9 +173,9 @@ public class DataService {
     }
 
     public void generateDefaultPlantSourceData() {
-        Data.PlantSource plantSourceData = new Data.PlantSource();
+        List<PlantDto.PlantSourceDto> plantSourceDtoList = defaultDataService.getDefaultPlantSourceDtoList();
 
-        for (PlantDto.PlantSourceDto plantSourceDto : plantSourceData.getPlantSourceDtoList()) {
+        for (PlantDto.PlantSourceDto plantSourceDto : plantSourceDtoList) {
             PlantSource plantSource;
 
             Optional<PlantSource> plantSourceOptional = plantSourceRepository.findById(plantSourceDto.getPlantSourceId());
@@ -194,11 +192,10 @@ public class DataService {
     }
 
     public void generateDefaultSeasoningData() throws JSONException {
-        Data.Seasoning seasoningData = new Data.Seasoning();
-
+        List<SeasoningDto> seasoningDtoList = defaultDataService.getDefaultSeasoningDtoList();
         List<SeasoningSource> seasoningSourceList = seasoningSourceRepository.findAll();
 
-        for (SeasoningDto seasoningDto : seasoningData.getSeasoningDtoList()) {
+        for (SeasoningDto seasoningDto : seasoningDtoList) {
             Seasoning seasoning;
 
             Optional<Seasoning> seasoningOptional = seasoningRepository.findById(seasoningDto.getSeasoningId());
@@ -237,9 +234,9 @@ public class DataService {
     }
 
     public void generateDefaultSeasoningSourceData() {
-        Data.SeasoningSource seasoningSourceData = new Data.SeasoningSource();
+        List<SeasoningDto.SeasoningSourceDto> seasoningSourceDtoList = defaultDataService.getDefaultSeasoningSourceDtoList();
 
-        for (SeasoningDto.SeasoningSourceDto seasoningSourceDto : seasoningSourceData.getSeasoningSourceDtoList()) {
+        for (SeasoningDto.SeasoningSourceDto seasoningSourceDto : seasoningSourceDtoList) {
             SeasoningSource seasoningSource;
 
             Optional<SeasoningSource> seasoningSourceOptional = seasoningSourceRepository.findById(seasoningSourceDto.getSeasoningSourceId());
@@ -256,12 +253,11 @@ public class DataService {
     }
 
     public void generateDefaultDishData() throws JSONException {
-        Data.Dish dishData = new Data.Dish();
-
+        List<DishDto> dishDtoList = defaultDataService.getDefaultDishDtoList();
         List<Party> partyList = partyRepository.findAll();
         List<Unlock> unlockList = unlockRepository.findAll();
 
-        for (DishDto dishDto : dishData.getDishDtoList()) {
+        for (DishDto dishDto : dishDtoList) {
             Dish dish;
 
             Optional<Dish> dishOptional = dishRepository.findById(dishDto.getDishId());
@@ -319,9 +315,9 @@ public class DataService {
     }
 
     public void generateDefaultPartyData() {
-        Data.Party partyData = new Data.Party();
+        List<DishDto.PartyDto> partyDtoList = defaultDataService.getDefaultPartyDtoList();
 
-        for (DishDto.PartyDto partyDto : partyData.getPartyDtoList()) {
+        for (DishDto.PartyDto partyDto : partyDtoList) {
             Party party;
 
             Optional<Party> partyOptional = partyRepository.findById(partyDto.getPartyId());
@@ -338,9 +334,9 @@ public class DataService {
     }
 
     public void generateDefaultUnlockData() {
-        Data.Unlock unlockData = new Data.Unlock();
+        List<DishDto.UnlockDto> unlockDtoList = defaultDataService.getDefaultUnlockDtoList();
 
-        for (DishDto.UnlockDto unlockDto : unlockData.getUnlockDtoList()) {
+        for (DishDto.UnlockDto unlockDto : unlockDtoList) {
             Unlock unlock;
 
             Optional<Unlock> unlockOptional = unlockRepository.findById(unlockDto.getUnlockId());

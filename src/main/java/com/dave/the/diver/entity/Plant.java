@@ -1,8 +1,6 @@
 package com.dave.the.diver.entity;
 
-import com.dave.the.diver.constant.Data;
 import com.dave.the.diver.dto.PlantDto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
