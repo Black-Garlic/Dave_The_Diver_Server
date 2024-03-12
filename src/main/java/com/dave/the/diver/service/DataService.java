@@ -1,9 +1,6 @@
 package com.dave.the.diver.service;
 
-import com.dave.the.diver.dto.DishDto;
-import com.dave.the.diver.dto.FishDto;
-import com.dave.the.diver.dto.PlantDto;
-import com.dave.the.diver.dto.SeasoningDto;
+import com.dave.the.diver.dto.*;
 import com.dave.the.diver.entity.*;
 import com.dave.the.diver.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -21,11 +18,10 @@ public class DataService {
     private final RegionRepository regionRepository;
     private final TimeRepository timeRepository;
     private final PlantRepository plantRepository;
-    private final PlantPlantSourceRelationRepository plantPlantSourceRelationRepository;
-    private final PlantSourceRepository plantSourceRepository;
+    private final PlantSourceRelationRepository plantSourceRelationRepository;
     private final SeasoningRepository seasoningRepository;
-    private final SeasoningSeasoningSourceRepository seasoningSeasoningSourceRepository;
-    private final SeasoningSourceRepository seasoningSourceRepository;
+    private final SeasoningSourceRelationRepository seasoningSourceRelationRepository;
+    private final SourceRepository sourceRepository;
     private final DishRepository dishRepository;
     private final DishPartyRelationRepository dishPartyRelationRepository;
     private final PartyRepository partyRepository;
@@ -132,7 +128,7 @@ public class DataService {
 
     public void generateDefaultPlantData() throws JSONException {
         List<PlantDto> plantDtoList = defaultDataService.getDefaultPlantDtoList();
-        List<PlantSource> plantSourceList = plantSourceRepository.findAll();
+        List<Source> sourceList = sourceRepository.findAll();
 
         for (PlantDto plantDto : plantDtoList) {
             Plant plant;
@@ -149,51 +145,51 @@ public class DataService {
             plantRepository.save(plant);
 
             for (String plantSourceName : plantDto.getPlantSourceList()) {
-                this.generatePlantPlantSourceRelation(plant, plantSourceList, plantSourceName);
+                this.generatePlantPlantSourceRelation(plant, sourceList, plantSourceName);
             }
         }
     }
 
     private void generatePlantPlantSourceRelation(
         Plant plant,
-        List<PlantSource> plantSourceList,
+        List<Source> sourceList,
         String plantSourceName
     ) {
         if (plantSourceName == null) {
             return;
         }
 
-        for (PlantSource plantSource : plantSourceList) {
-            if (plantSource.getName().equals(plantSourceName) &&
-                plantPlantSourceRelationRepository.findByPlantAndPlantSource(plant, plantSource).isEmpty()) {
-                PlantPlantSourceRelation plantPlantSourceRelation = new PlantPlantSourceRelation(plant, plantSource);
-                plantPlantSourceRelationRepository.save(plantPlantSourceRelation);
+        for (Source source : sourceList) {
+            if (source.getName().equals(plantSourceName) &&
+                plantSourceRelationRepository.findByPlantAndSource(plant, source).isEmpty()) {
+                PlantSourceRelation plantPlantSourceRelation = new PlantSourceRelation(plant, source);
+                plantSourceRelationRepository.save(plantPlantSourceRelation);
             }
         }
     }
 
     public void generateDefaultPlantSourceData() {
-        List<PlantDto.PlantSourceDto> plantSourceDtoList = defaultDataService.getDefaultPlantSourceDtoList();
+        List<SourceDto> sourceDtoList = defaultDataService.getDefaultPlantSourceDtoList();
 
-        for (PlantDto.PlantSourceDto plantSourceDto : plantSourceDtoList) {
-            PlantSource plantSource;
+        for (SourceDto sourceDto : sourceDtoList) {
+            Source source;
 
-            Optional<PlantSource> plantSourceOptional = plantSourceRepository.findById(plantSourceDto.getPlantSourceId());
+            Optional<Source> sourceOptional = sourceRepository.findById(sourceDto.getSourceId());
 
-            if (plantSourceOptional.isEmpty()) {
-                plantSource = new PlantSource(plantSourceDto);
+            if (sourceOptional.isEmpty()) {
+                source = new Source(sourceDto);
             } else {
-                plantSource = plantSourceOptional.get();
-                plantSource.updatePlantSource(plantSourceDto);
+                source = sourceOptional.get();
+                source.updateSource(sourceDto);
             }
 
-            plantSourceRepository.save(plantSource);
+            sourceRepository.save(source);
         }
     }
 
     public void generateDefaultSeasoningData() throws JSONException {
         List<SeasoningDto> seasoningDtoList = defaultDataService.getDefaultSeasoningDtoList();
-        List<SeasoningSource> seasoningSourceList = seasoningSourceRepository.findAll();
+        List<Source> sourceList = sourceRepository.findAll();
 
         for (SeasoningDto seasoningDto : seasoningDtoList) {
             Seasoning seasoning;
@@ -210,45 +206,45 @@ public class DataService {
             seasoningRepository.save(seasoning);
 
             for (String seasoningSourceName : seasoningDto.getSeasoningSourceList()) {
-                this.generateSeasoningSeasoningSourceRelation(seasoning, seasoningSourceList, seasoningSourceName);
+                this.generateSeasoningSeasoningSourceRelation(seasoning, sourceList, seasoningSourceName);
             }
         }
     }
 
     private void generateSeasoningSeasoningSourceRelation(
         Seasoning seasoning,
-        List<SeasoningSource> seasoningSourceList,
+        List<Source> sourceList,
         String seasoningSourceName
     ) {
         if (seasoningSourceName == null) {
             return;
         }
 
-        for (SeasoningSource seasoningSource : seasoningSourceList) {
-            if (seasoningSource.getName().equals(seasoningSourceName) &&
-                seasoningSeasoningSourceRepository.findBySeasoningAndSeasoningSource(seasoning, seasoningSource).isEmpty()) {
-                SeasoningSeasoningSourceRelation seasoningSeasoningSourceRelation = new SeasoningSeasoningSourceRelation(seasoning, seasoningSource);
-                seasoningSeasoningSourceRepository.save(seasoningSeasoningSourceRelation);
+        for (Source source : sourceList) {
+            if (source.getName().equals(seasoningSourceName) &&
+                seasoningSourceRelationRepository.findBySeasoningAndSource(seasoning, source).isEmpty()) {
+                SeasoningSourceRelation seasoningSourceRelation = new SeasoningSourceRelation(seasoning, source);
+                seasoningSourceRelationRepository.save(seasoningSourceRelation);
             }
         }
     }
 
     public void generateDefaultSeasoningSourceData() {
-        List<SeasoningDto.SeasoningSourceDto> seasoningSourceDtoList = defaultDataService.getDefaultSeasoningSourceDtoList();
+        List<SourceDto> seasoningSourceDtoList = defaultDataService.getDefaultSeasoningSourceDtoList();
 
-        for (SeasoningDto.SeasoningSourceDto seasoningSourceDto : seasoningSourceDtoList) {
-            SeasoningSource seasoningSource;
+        for (SourceDto sourceDto : seasoningSourceDtoList) {
+            Source source;
 
-            Optional<SeasoningSource> seasoningSourceOptional = seasoningSourceRepository.findById(seasoningSourceDto.getSeasoningSourceId());
+            Optional<Source> seasoningSourceOptional = sourceRepository.findById(sourceDto.getSourceId());
 
             if (seasoningSourceOptional.isEmpty()) {
-                seasoningSource = new SeasoningSource(seasoningSourceDto);
+                source = new Source(sourceDto);
             } else {
-                seasoningSource = seasoningSourceOptional.get();
-                seasoningSource.updateSeasoningSource(seasoningSourceDto);
+                source = seasoningSourceOptional.get();
+                source.updateSource(sourceDto);
             }
 
-            seasoningSourceRepository.save(seasoningSource);
+            sourceRepository.save(source);
         }
     }
 

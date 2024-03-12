@@ -43,22 +43,4 @@ public class SeasoningDto {
             }
         }
     }
-
-    @Getter
-    public static class SeasoningSourceDto {
-
-        private final String seasoningSourceId;
-        private final String name;
-        private final String color;
-
-        public SeasoningSourceDto(
-            String seasoningSourceId,
-            String name,
-            String color
-        ) {
-            this.seasoningSourceId = seasoningSourceId;
-            this.name = name;
-            this.color = color;
-        }
-    }
 }

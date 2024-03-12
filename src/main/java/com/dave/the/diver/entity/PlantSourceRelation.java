@@ -8,15 +8,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Getter
-@Table(name = "dtd_plant_plant_source_relation")
+@Table(name = "dtd_plant_source_relation")
 @NoArgsConstructor
-public class PlantPlantSourceRelation {
+public class PlantSourceRelation {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "plant_plant_source_relation_id", nullable = false, length = 50)
-    private String plantPlantSourceRelationId;
+    @Column(name = "plant_source_relation_id", nullable = false, length = 50)
+    private String plantSourceRelationId;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
@@ -25,14 +25,14 @@ public class PlantPlantSourceRelation {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "plant_source_id")
-    private PlantSource plantSource;
+    @JoinColumn(name = "source_id")
+    private Source source;
 
-    public PlantPlantSourceRelation(
+    public PlantSourceRelation(
         Plant plant,
-        PlantSource plantSource
+        Source source
     ) {
         this.plant = plant;
-        this.plantSource = plantSource;
+        this.source = source;
     }
 }

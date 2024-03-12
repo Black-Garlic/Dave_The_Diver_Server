@@ -43,22 +43,4 @@ public class PlantDto {
             }
         }
     }
-
-    @Getter
-    public static class PlantSourceDto {
-
-        private final String plantSourceId;
-        private final String name;
-        private final String color;
-
-        public PlantSourceDto(
-            String plantSourceId,
-            String name,
-            String color
-        ) {
-            this.plantSourceId = plantSourceId;
-            this.name = name;
-            this.color = color;
-        }
-    }
 }

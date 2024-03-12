@@ -1,9 +1,6 @@
 package com.dave.the.diver.service;
 
-import com.dave.the.diver.dto.DishDto;
-import com.dave.the.diver.dto.FishDto;
-import com.dave.the.diver.dto.PlantDto;
-import com.dave.the.diver.dto.SeasoningDto;
+import com.dave.the.diver.dto.*;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 
@@ -245,21 +242,21 @@ public class DefaultDataService {
         return plantDtoList;
     }
 
-    public List<PlantDto.PlantSourceDto> getDefaultPlantSourceDtoList() {
-        List<PlantDto.PlantSourceDto> plantSourceDtoList = new ArrayList<>();
+    public List<SourceDto> getDefaultPlantSourceDtoList() {
+        List<SourceDto> sourceDtoList = new ArrayList<>();
 
-        plantSourceDtoList.add(new PlantDto.PlantSourceDto("FARM", "텃밭", "darkgoldenrod"));
-        plantSourceDtoList.add(new PlantDto.PlantSourceDto("BLUE_HOLE", "0 ~ 130m", "geekblue"));
-        plantSourceDtoList.add(new PlantDto.PlantSourceDto("BLUE_HOLE_SHALLOWS", "0 ~ 50m", "cyan"));
-        plantSourceDtoList.add(new PlantDto.PlantSourceDto("BLUE_HOLE_MEDIUM_DEPTH", "50 ~ 130m", "blue"));
-        plantSourceDtoList.add(new PlantDto.PlantSourceDto("CAVE", "종유 동굴", "dimgrey"));
-        plantSourceDtoList.add(new PlantDto.PlantSourceDto("GLACIAL", "빙하 지역", "deepskyblue"));
-        plantSourceDtoList.add(new PlantDto.PlantSourceDto("GLACIAL_SEAWEED", "빙하 해초 동굴", "dodgerblue"));
-        plantSourceDtoList.add(new PlantDto.PlantSourceDto("SEAWEED_FARM", "해초 농장", "forestgreen"));
-        plantSourceDtoList.add(new PlantDto.PlantSourceDto("OTTO", "오토", "goldenrod"));
-        plantSourceDtoList.add(new PlantDto.PlantSourceDto("DJANGO", "장고", "black"));
+        sourceDtoList.add(new SourceDto("FARM", "텃밭", "darkgoldenrod"));
+        sourceDtoList.add(new SourceDto("BLUE_HOLE", "0 ~ 130m", "geekblue"));
+        sourceDtoList.add(new SourceDto("BLUE_HOLE_SHALLOWS", "0 ~ 50m", "cyan"));
+        sourceDtoList.add(new SourceDto("BLUE_HOLE_MEDIUM_DEPTH", "50 ~ 130m", "blue"));
+        sourceDtoList.add(new SourceDto("CAVE", "종유 동굴", "dimgrey"));
+        sourceDtoList.add(new SourceDto("GLACIAL", "빙하 지역", "deepskyblue"));
+        sourceDtoList.add(new SourceDto("GLACIAL_SEAWEED", "빙하 해초 동굴", "dodgerblue"));
+        sourceDtoList.add(new SourceDto("SEAWEED_FARM", "해초 농장", "forestgreen"));
+        sourceDtoList.add(new SourceDto("OTTO", "오토", "goldenrod"));
+        sourceDtoList.add(new SourceDto("DJANGO", "장고", "black"));
 
-        return plantSourceDtoList;
+        return sourceDtoList;
     }
 
     public List<SeasoningDto> getDefaultSeasoningDtoList() throws JSONException {
@@ -280,13 +277,13 @@ public class DefaultDataService {
         return seasoningDtoList;
     }
 
-    public List<SeasoningDto.SeasoningSourceDto> getDefaultSeasoningSourceDtoList() {
-        List<SeasoningDto.SeasoningSourceDto> seasoningSourceDtoList = new ArrayList<>();
+    public List<SourceDto> getDefaultSeasoningSourceDtoList() {
+        List<SourceDto> sourceDtoList = new ArrayList<>();
 
-        seasoningSourceDtoList.add(new SeasoningDto.SeasoningSourceDto("DISPATCH", "파견 & 요리 냄비", "darkblue"));
-        seasoningSourceDtoList.add(new SeasoningDto.SeasoningSourceDto("DJANGO", "장고", "black"));
+        sourceDtoList.add(new SourceDto("DISPATCH", "파견 & 요리 냄비", "darkblue"));
+        sourceDtoList.add(new SourceDto("DJANGO", "장고", "black"));
 
-        return seasoningSourceDtoList;
+        return sourceDtoList;
     }
 
     public List<DishDto> getDefaultDishDtoList() throws JSONException {

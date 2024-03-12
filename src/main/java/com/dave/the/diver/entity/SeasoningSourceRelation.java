@@ -8,15 +8,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Getter
-@Table(name = "dtd_seasoning_seasoning_source_relation")
+@Table(name = "dtd_seasoning_source_relation")
 @NoArgsConstructor
-public class SeasoningSeasoningSourceRelation {
+public class SeasoningSourceRelation {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "seasoning_seasoning_source_relation_id", nullable = false, length = 50)
-    private String seasoningSeasoningSourceRelationId;
+    @Column(name = "seasoning_source_relation_id", nullable = false, length = 50)
+    private String seasoningSourceRelationId;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
@@ -25,14 +25,14 @@ public class SeasoningSeasoningSourceRelation {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "seasoning_source_id")
-    private SeasoningSource seasoningSource;
+    @JoinColumn(name = "source_id")
+    private Source source;
 
-    public SeasoningSeasoningSourceRelation(
+    public SeasoningSourceRelation(
         Seasoning seasoning,
-        SeasoningSource seasoningSource
+        Source source
     ) {
         this.seasoning = seasoning;
-        this.seasoningSource = seasoningSource;
+        this.source = source;
     }
 }
