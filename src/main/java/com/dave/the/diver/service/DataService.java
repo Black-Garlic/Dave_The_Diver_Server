@@ -52,7 +52,7 @@ public class DataService {
         }
     }
 
-    public Region getRegion(
+    private Region getRegion(
         String regionName,
         List<Region> regionList
     ) {
@@ -69,7 +69,7 @@ public class DataService {
         return null;
     }
 
-    public Time getTime(
+    private Time getTime(
         String timeName,
         List<Time> timeList
     ) {
