@@ -410,6 +410,27 @@ public class DataService {
         return null;
     }
 
+    public void deleteTotalDefaultData() {
+        // Fish
+        fishRepository.deleteAll();
+        regionRepository.deleteAll();
+        timeRepository.deleteAll();
+
+        // Plant
+        plantRepository.deleteAll();
+
+        // Seasoning
+        seasoningRepository.deleteAll();
+
+        sourceRepository.deleteAll();
+
+        // Dish
+        recipeRepository.deleteAll();
+        dishRepository.deleteAll();
+        partyRepository.findAll();
+        unlockRepository.deleteAll();
+    }
+
     public void deleteDefaultDishInfo() {
         dishPartyRelationRepository.deleteAll();
         dishRepository.deleteAll();

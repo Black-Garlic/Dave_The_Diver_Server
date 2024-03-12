@@ -14,6 +14,24 @@ public class DataController {
 
     private final DataService dataService;
 
+    /***********************************
+     ** POST
+     ***********************************/
+
+    @PostMapping(path = Path.DATA, produces = "application/json")
+    public Result generateTotalDefaultData() {
+        Result result = new Result();
+
+        try {
+            dataService.generateTotalDefaultData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
     @PostMapping(path = Path.DATA_FISH, produces = "application/json")
     public Result generateDefaultFishData() {
         Result result = new Result();
@@ -160,6 +178,24 @@ public class DataController {
 
         try {
             dataService.generateDefaultRecipeData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    /***********************************
+     ** DELETE
+     ***********************************/
+
+    @DeleteMapping(path = Path.DATA, produces = "application/json")
+    public Result deleteTotalDefaultData() {
+        Result result = new Result();
+
+        try {
+            dataService.deleteTotalDefaultData();
             result.setSuccessResult(null);
         } catch (Exception e) {
             result.setFailResult(e.getMessage());
