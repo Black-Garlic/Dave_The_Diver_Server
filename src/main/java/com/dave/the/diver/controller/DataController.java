@@ -204,6 +204,62 @@ public class DataController {
         return result;
     }
 
+    @DeleteMapping(path = Path.DATA_FISH, produces = "application/json")
+    public Result deleteDefaultFishData() {
+        Result result = new Result();
+
+        try {
+            dataService.deleteDefaultFishData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @DeleteMapping(path = Path.DATA_PLANT, produces = "application/json")
+    public Result deleteDefaultPlantData() {
+        Result result = new Result();
+
+        try {
+            dataService.deleteDefaultPlantData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @DeleteMapping(path = Path.DATA_SEASONING, produces = "application/json")
+    public Result deleteDefaultSeasoningData() {
+        Result result = new Result();
+
+        try {
+            dataService.deleteDefaultSeasoningData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @DeleteMapping(path = Path.DATA_SOURCE, produces = "application/json")
+    public Result deleteDefaultSourceData() {
+        Result result = new Result();
+
+        try {
+            dataService.deleteDefaultSourceData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
     @DeleteMapping(path = Path.DATA_DISH, produces = "application/json")
     public Result deleteDefaultDishInfo() {
         Result result = new Result();

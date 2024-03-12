@@ -412,27 +412,46 @@ public class DataService {
 
     public void deleteTotalDefaultData() {
         // Fish
+        this.deleteDefaultFishData();
+
+        // Plant
+        this.deleteDefaultPlantData();
+
+        // Seasoning
+        this.deleteDefaultSeasoningData();
+
+        // Source
+        this.deleteDefaultSourceData();
+
+        // Dish
+        this.deleteDefaultDishInfo();
+    }
+
+    public void deleteDefaultFishData() {
         fishRepository.deleteAll();
         regionRepository.deleteAll();
         timeRepository.deleteAll();
+    }
 
-        // Plant
+    public void deleteDefaultPlantData() {
+        plantSourceRelationRepository.deleteAll();
         plantRepository.deleteAll();
+    }
 
-        // Seasoning
+    public void deleteDefaultSeasoningData() {
+        seasoningSourceRelationRepository.deleteAll();
         seasoningRepository.deleteAll();
+    }
 
+    public void deleteDefaultSourceData() {
         sourceRepository.deleteAll();
-
-        // Dish
-        recipeRepository.deleteAll();
-        dishRepository.deleteAll();
-        partyRepository.findAll();
-        unlockRepository.deleteAll();
     }
 
     public void deleteDefaultDishInfo() {
+        recipeRepository.deleteAll();
         dishPartyRelationRepository.deleteAll();
         dishRepository.deleteAll();
+        partyRepository.findAll();
+        unlockRepository.deleteAll();
     }
 }
