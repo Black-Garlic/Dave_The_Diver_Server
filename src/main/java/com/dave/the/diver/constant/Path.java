@@ -16,6 +16,8 @@ public class Path {
     public static final String DATA_TIME = DATA + "/time";
     public static final String DATA_PLANT = DATA + "/plant";
     public static final String DATA_PLANT_SOURCE = DATA + "/plant-source";
+    public static final String DATA_SEASONING = DATA + "/seasoning";
+    public static final String DATA_SEASONING_SOURCE = DATA + "/seasoning-source";
     public static final String DATA_DISH = DATA + "/dish";
     public static final String DATA_PARTY = DATA + "/party";
     public static final String DATA_UNLOCK = DATA + "/unlock";

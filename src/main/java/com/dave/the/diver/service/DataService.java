@@ -21,6 +21,9 @@ public class DataService {
     private final PlantRepository plantRepository;
     private final PlantPlantSourceRelationRepository plantPlantSourceRelationRepository;
     private final PlantSourceRepository plantSourceRepository;
+    private final SeasoningRepository seasoningRepository;
+    private final SeasoningSeasoningSourceRepository seasoningSeasoningSourceRepository;
+    private final SeasoningSourceRepository seasoningSourceRepository;
     private final DishRepository dishRepository;
     private final DishPartyRelationRepository dishPartyRelationRepository;
     private final PartyRepository partyRepository;
@@ -158,10 +161,8 @@ public class DataService {
         }
 
         for (PlantSource plantSource : plantSourceList) {
-            boolean plantSourceEqual = plantSource.getName().equals(plantSourceName);
-            boolean exist = plantPlantSourceRelationRepository.findByPlantAndPlantSource(plant, plantSource).isPresent();
-
-            if (plantSourceEqual && !exist) {
+            if (plantSource.getName().equals(plantSourceName) &&
+                plantPlantSourceRelationRepository.findByPlantAndPlantSource(plant, plantSource).isEmpty()) {
                 PlantPlantSourceRelation plantPlantSourceRelation = new PlantPlantSourceRelation(plant, plantSource);
                 plantPlantSourceRelationRepository.save(plantPlantSourceRelation);
             }
@@ -182,6 +183,68 @@ public class DataService {
                 existPlantSource.updatePlantSource(plantSource.getName(), plantSource.getColor());
 
                 plantSourceRepository.save(existPlantSource);
+            }
+        }
+    }
+
+    public void generateDefaultSeasoningData() throws JSONException {
+        Data.Seasoning seasoningData = new Data.Seasoning();
+
+        List<SeasoningSource> seasoningSourceList = seasoningSourceRepository.findAll();
+
+        for (Data.SeasoningInfo seasoningInfo : seasoningData.getSeasoningInfoList()) {
+            Seasoning seasoning;
+
+            Optional<Seasoning> seasoningOptional = seasoningRepository.findById(seasoningInfo.getSeasoningId());
+
+            if (seasoningOptional.isEmpty()) {
+                seasoning = new Seasoning(seasoningInfo);
+            } else {
+                seasoning = seasoningOptional.get();
+
+                seasoning.updateSeasoning(seasoningInfo);
+            }
+
+            seasoningRepository.save(seasoning);
+
+            for (String seasoningSourceName : seasoningInfo.getSeasoningSourceList()) {
+                this.generateSeasoningSeasoningSourceRelation(seasoning, seasoningSourceList, seasoningSourceName);
+            }
+        }
+    }
+
+    private void generateSeasoningSeasoningSourceRelation(
+        Seasoning seasoning,
+        List<SeasoningSource> seasoningSourceList,
+        String seasoningSourceName
+    ) {
+        if (seasoningSourceName == null) {
+            return;
+        }
+
+        for (SeasoningSource seasoningSource : seasoningSourceList) {
+            if (seasoningSource.getName().equals(seasoningSourceName) &&
+                seasoningSeasoningSourceRepository.findBySeasoningAndSeasoningSource(seasoning, seasoningSource).isEmpty()) {
+                SeasoningSeasoningSourceRelation seasoningSeasoningSourceRelation = new SeasoningSeasoningSourceRelation(seasoning, seasoningSource);
+                seasoningSeasoningSourceRepository.save(seasoningSeasoningSourceRelation);
+            }
+        }
+    }
+
+    public void generateDefaultSeasoningSourceData() {
+        Data.SeasoningSource seasoningSourceData = new Data.SeasoningSource();
+
+        for (SeasoningSource seasoningSource : seasoningSourceData.getSeasoningSourceList()) {
+            Optional<SeasoningSource> seasoningSourceOptional = seasoningSourceRepository.findById(seasoningSource.getSeasoningSourceId());
+
+            if (seasoningSourceOptional.isEmpty()) {
+                seasoningSourceRepository.save(seasoningSource);
+            } else {
+                SeasoningSource existSeasoningSource = seasoningSourceOptional.get();
+
+                existSeasoningSource.updateSeasoningSource(seasoningSource.getName(), seasoningSource.getColor());
+
+                seasoningSourceRepository.save(seasoningSource);
             }
         }
     }
@@ -242,10 +305,8 @@ public class DataService {
         }
 
         for (Party party : partyList) {
-            boolean partyEqual = party.getName().equals(partyName);
-            boolean exist = dishPartyRelationRepository.findByDishAndParty(dish, party).isPresent();
-
-            if (partyEqual && !exist) {
+            if (party.getName().equals(partyName) &&
+                dishPartyRelationRepository.findByDishAndParty(dish, party).isEmpty()) {
                 DishPartyRelation dishPartyRelation = new DishPartyRelation(dish, party);
                 dishPartyRelationRepository.save(dishPartyRelation);
             }

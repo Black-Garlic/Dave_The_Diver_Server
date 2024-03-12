@@ -84,6 +84,34 @@ public class DataController {
         return result;
     }
 
+    @PostMapping(path = Path.DATA_SEASONING, produces = "application/json")
+    public Result generateDefaultSeasoningData() {
+        Result result = new Result();
+
+        try {
+            dataService.generateDefaultSeasoningData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @PostMapping(path = Path.DATA_SEASONING_SOURCE, produces = "application/json")
+    public Result generateDefaultSeasoningSourceData() {
+        Result result = new Result();
+
+        try {
+            dataService.generateDefaultSeasoningSourceData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
     @PostMapping(path = Path.DATA_DISH, produces = "application/json")
     public Result generateDefaultDish() {
         Result result = new Result();

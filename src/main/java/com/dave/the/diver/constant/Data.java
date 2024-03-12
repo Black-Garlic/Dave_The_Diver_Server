@@ -315,6 +315,75 @@ public class Data {
     }
 
     @Getter
+    public static class SeasoningInfo {
+        private String seasoningId;
+        private String name;
+        private int rank;
+        private final List<String> seasoningSourceList;
+
+        public SeasoningInfo(
+            String json
+        ) throws JSONException {
+            JSONObject jsonObject = new JSONObject(json);
+
+            if (jsonObject.has("id")) {
+                this.seasoningId = (String) jsonObject.get("id");
+            }
+
+            if (jsonObject.has("name")) {
+                this.name = (String) jsonObject.get("name");
+            }
+
+            if (jsonObject.has("rank")) {
+                this.rank = (int) jsonObject.get("rank");
+            }
+
+            this.seasoningSourceList = new ArrayList<>();
+
+            if (jsonObject.has("source")) {
+                JSONArray plantSourceJsonArray = (JSONArray) jsonObject.get("source");
+
+                for (int i = 0; i < plantSourceJsonArray.length(); i++) {
+                    seasoningSourceList.add((String) plantSourceJsonArray.get(i));
+                }
+            }
+        }
+    }
+
+    @Getter
+    public static class Seasoning {
+        List<SeasoningInfo> seasoningInfoList;
+
+        public Seasoning() throws JSONException {
+            this.seasoningInfoList = new ArrayList<>();
+
+            seasoningInfoList.add(new SeasoningInfo("{\"id\":\"Soy_Sauce\",\"name\":\"간장\",\"rank\":1,\"source\":[\"파견 & 요리 냄비\",\"장고\"]}"));
+            seasoningInfoList.add(new SeasoningInfo("{\"id\":\"Turmeric\",\"name\":\"강황\",\"rank\":1,\"source\":[\"파견 & 요리 냄비\",\"장고\"]}"));
+            seasoningInfoList.add(new SeasoningInfo("{\"id\":\"Mayonnaise\",\"name\":\"마요네즈\",\"rank\":1,\"source\":[\"파견 & 요리 냄비\",\"장고\"]}"));
+            seasoningInfoList.add(new SeasoningInfo("{\"id\":\"Miso\",\"name\":\"미소된장\",\"rank\":1,\"source\":[\"파견 & 요리 냄비\",\"장고\"]}"));
+            seasoningInfoList.add(new SeasoningInfo("{\"id\":\"Salt\",\"name\":\"소금\",\"rank\":1,\"source\":[\"파견 & 요리 냄비\",\"장고\"]}"));
+            seasoningInfoList.add(new SeasoningInfo("{\"id\":\"Olive_Oil\",\"name\":\"올리브오일\",\"rank\":1,\"source\":[\"파견 & 요리 냄비\",\"장고\"]}"));
+            seasoningInfoList.add(new SeasoningInfo("{\"id\":\"Sesame_Seed\",\"name\":\"참깨\",\"rank\":1,\"source\":[\"파견 & 요리 냄비\",\"장고\"]}"));
+            seasoningInfoList.add(new SeasoningInfo("{\"id\":\"Curry_Block\",\"name\":\"카레블럭\",\"rank\":1,\"source\":[\"파견 & 요리 냄비\",\"장고\"]}"));
+            seasoningInfoList.add(new SeasoningInfo("{\"id\":\"Truffle\",\"name\":\"트러플\",\"rank\":1,\"source\":[\"장고\"]}"));
+            seasoningInfoList.add(new SeasoningInfo("{\"id\":\"Black_Pepper\",\"name\":\"후추\",\"rank\":1,\"source\":[\"파견 & 요리 냄비\",\"장고\"]}"));
+            seasoningInfoList.add(new SeasoningInfo("{\"id\":\"Black_Vinegar\",\"name\":\"흑식초\",\"rank\":1,\"source\":[\"파견 & 요리 냄비\",\"장고\"]}"));
+        }
+    }
+
+    @Getter
+    public static class SeasoningSource {
+        List<com.dave.the.diver.entity.SeasoningSource> seasoningSourceList;
+
+        public SeasoningSource() {
+            this.seasoningSourceList = new ArrayList<>();
+
+            seasoningSourceList.add(new com.dave.the.diver.entity.SeasoningSource("DISPATCH", "파견 & 요리 냄비", "darkblue"));
+            seasoningSourceList.add(new com.dave.the.diver.entity.SeasoningSource("DJANGO", "장고", "black"));
+        }
+    }
+
+    @Getter
     public static class DishInfo {
         private String dishId;
         private String name;
