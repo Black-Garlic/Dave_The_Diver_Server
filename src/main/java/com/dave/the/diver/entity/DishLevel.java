@@ -3,11 +3,13 @@ package com.dave.the.diver.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Getter
 @Table(name = "dtd_dish_level")
+@NoArgsConstructor
 public class DishLevel {
 
     @Id
@@ -28,4 +30,20 @@ public class DishLevel {
 
     @Column(name = "dish_level")
     private int dishLevel;
+
+    public DishLevel(
+        Dish dish,
+        Profile profile,
+        int dishLevel
+    ) {
+        this.dish = dish;
+        this.profile = profile;
+        this.dishLevel = dishLevel;
+    }
+
+    public void updateDishLevel(
+        int dishLevel
+    ) {
+        this.dishLevel = dishLevel;
+    }
 }
