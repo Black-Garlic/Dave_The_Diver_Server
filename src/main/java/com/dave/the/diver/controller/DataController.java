@@ -154,6 +154,20 @@ public class DataController {
         return result;
     }
 
+    @PostMapping(path = Path.DATA_RECIPE, produces = "application/json")
+    public Result generateDefaultRecipeData() {
+        Result result = new Result();
+
+        try {
+            dataService.generateDefaultRecipeData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
     @DeleteMapping(path = Path.DATA_DISH, produces = "application/json")
     public Result deleteDefaultDishInfo() {
         Result result = new Result();

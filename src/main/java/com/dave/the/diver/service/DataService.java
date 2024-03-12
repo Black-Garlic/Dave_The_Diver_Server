@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public class DataService {
     private final DishPartyRelationRepository dishPartyRelationRepository;
     private final PartyRepository partyRepository;
     private final UnlockRepository unlockRepository;
+    private final RecipeRepository recipeRepository;
 
     private final DefaultDataService defaultDataService;
 
@@ -346,6 +348,45 @@ public class DataService {
 
             unlockRepository.save(unlock);
         }
+    }
+
+    public void generateDefaultRecipeData() throws JSONException {
+        List<RecipeDto> recipeDtoList = defaultDataService.getDefaultRecipeData();
+        List<Dish> dishList = dishRepository.findAll();
+
+        for (RecipeDto recipeDto : recipeDtoList) {
+            Recipe recipe;
+
+            Dish dish = this.getDish(dishList, recipeDto.getDishId());
+
+            Optional<Recipe> recipeOptional = recipeRepository.findByDishAndIngredientId(dish, recipeDto.getIngredientId());
+
+            if (recipeOptional.isEmpty()) {
+                recipe = new Recipe(recipeDto, dish);
+            } else {
+                recipe = recipeOptional.get();
+                recipe.updateRecipe(recipeDto, dish);
+            }
+
+            recipeRepository.save(recipe);
+        }
+    }
+
+    private Dish getDish(
+        List<Dish> dishList,
+        String dishId
+    ) {
+        if (dishId == null) {
+            return null;
+        }
+
+        for (Dish dish : dishList) {
+            if (dish.getDishId().equals(dishId)) {
+                return dish;
+            }
+        }
+
+        return null;
     }
 
     public void deleteDefaultDishInfo() {
