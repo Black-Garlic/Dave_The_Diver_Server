@@ -1,6 +1,10 @@
 package com.dave.the.diver.service;
 
 import com.dave.the.diver.constant.Data;
+import com.dave.the.diver.dto.DishDto;
+import com.dave.the.diver.dto.FishDto;
+import com.dave.the.diver.dto.PlantDto;
+import com.dave.the.diver.dto.SeasoningDto;
 import com.dave.the.diver.entity.*;
 import com.dave.the.diver.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -35,20 +39,20 @@ public class DataService {
         List<Region> regionList = regionRepository.findAll();
         List<Time> timeList = timeRepository.findAll();
 
-        for (Data.FishInfo fishInfo : fishData.getFishInfoList()) {
+        for (FishDto fishDto : fishData.getFishDtoList()) {
             Fish fish;
 
-            Optional<Fish> fishOptional = fishRepository.findById(fishInfo.getFishId());
+            Optional<Fish> fishOptional = fishRepository.findById(fishDto.getFishId());
 
-            Region region = this.getRegion(fishInfo.getRegion(), regionList);
-            Time time = this.getTime(fishInfo.getTime(), timeList);
+            Region region = this.getRegion(fishDto.getRegion(), regionList);
+            Time time = this.getTime(fishDto.getTime(), timeList);
 
             if (fishOptional.isEmpty()) {
-                fish = new Fish(fishInfo, region, time);
+                fish = new Fish(fishDto, region, time);
             } else {
                 fish = fishOptional.get();
 
-                fish.updateFish(fishInfo, region, time);
+                fish.updateFish(fishDto, region, time);
             }
 
             fishRepository.save(fish);
@@ -92,36 +96,38 @@ public class DataService {
     public void generateDefaultRegionData() {
         Data.Region regionData = new Data.Region();
 
-        for (Region region : regionData.getRegionList()) {
-            Optional<Region> regionOptional = regionRepository.findById(region.getRegionId());
+        for (FishDto.RegionDto regionDto : regionData.getRegionDtoList()) {
+            Region region;
+
+            Optional<Region> regionOptional = regionRepository.findById(regionDto.getRegionId());
 
             if (regionOptional.isEmpty()) {
-                regionRepository.save(region);
+                region = new Region(regionDto);
             } else {
-                Region existRegion = regionOptional.get();
-
-                existRegion.updateRegion(region.getName(), region.getColor());
-
-                regionRepository.save(existRegion);
+                region = regionOptional.get();
+                region.updateRegion(regionDto);
             }
+
+            regionRepository.save(region);
         }
     }
 
     public void generateDefaultTimeData() {
         Data.Time timeData = new Data.Time();
 
-        for (Time time : timeData.getTimeList()) {
-            Optional<Time> timeOptional = timeRepository.findById(time.getTimeId());
+        for (FishDto.TimeDto timeDto : timeData.getTimeDtoList()) {
+            Time time;
+
+            Optional<Time> timeOptional = timeRepository.findById(timeDto.getTimeId());
 
             if (timeOptional.isEmpty()) {
-                timeRepository.save(time);
+                time = new Time(timeDto);
             } else {
-                Time existTime = timeOptional.get();
-
-                existTime.updateTime(time.getName(), time.getColor());
-
-                timeRepository.save(existTime);
+                time = timeOptional.get();
+                time.updateTime(timeDto);
             }
+
+            timeRepository.save(time);
         }
     }
 
@@ -130,22 +136,21 @@ public class DataService {
 
         List<PlantSource> plantSourceList = plantSourceRepository.findAll();
 
-        for (Data.PlantInfo plantInfo : plantData.getPlantInfoList()) {
+        for (PlantDto plantDto : plantData.getPlantDtoList()) {
             Plant plant;
 
-            Optional<Plant> plantOptional = plantRepository.findById(plantInfo.getPlantId());
+            Optional<Plant> plantOptional = plantRepository.findById(plantDto.getPlantId());
 
             if (plantOptional.isEmpty()) {
-                plant = new Plant(plantInfo);
+                plant = new Plant(plantDto);
             } else {
                 plant = plantOptional.get();
-
-                plant.updatePlant(plantInfo);
+                plant.updatePlant(plantDto);
             }
 
             plantRepository.save(plant);
 
-            for (String plantSourceName : plantInfo.getPlantSourceList()) {
+            for (String plantSourceName : plantDto.getPlantSourceList()) {
                 this.generatePlantPlantSourceRelation(plant, plantSourceList, plantSourceName);
             }
         }
@@ -172,18 +177,19 @@ public class DataService {
     public void generateDefaultPlantSourceData() {
         Data.PlantSource plantSourceData = new Data.PlantSource();
 
-        for (PlantSource plantSource : plantSourceData.getPlantSourceList()) {
-            Optional<PlantSource> plantSourceOptional = plantSourceRepository.findById(plantSource.getPlantSourceId());
+        for (PlantDto.PlantSourceDto plantSourceDto : plantSourceData.getPlantSourceDtoList()) {
+            PlantSource plantSource;
+
+            Optional<PlantSource> plantSourceOptional = plantSourceRepository.findById(plantSourceDto.getPlantSourceId());
 
             if (plantSourceOptional.isEmpty()) {
-                plantSourceRepository.save(plantSource);
+                plantSource = new PlantSource(plantSourceDto);
             } else {
-                PlantSource existPlantSource = plantSourceOptional.get();
-
-                existPlantSource.updatePlantSource(plantSource.getName(), plantSource.getColor());
-
-                plantSourceRepository.save(existPlantSource);
+                plantSource = plantSourceOptional.get();
+                plantSource.updatePlantSource(plantSourceDto);
             }
+
+            plantSourceRepository.save(plantSource);
         }
     }
 
@@ -192,22 +198,21 @@ public class DataService {
 
         List<SeasoningSource> seasoningSourceList = seasoningSourceRepository.findAll();
 
-        for (Data.SeasoningInfo seasoningInfo : seasoningData.getSeasoningInfoList()) {
+        for (SeasoningDto seasoningDto : seasoningData.getSeasoningDtoList()) {
             Seasoning seasoning;
 
-            Optional<Seasoning> seasoningOptional = seasoningRepository.findById(seasoningInfo.getSeasoningId());
+            Optional<Seasoning> seasoningOptional = seasoningRepository.findById(seasoningDto.getSeasoningId());
 
             if (seasoningOptional.isEmpty()) {
-                seasoning = new Seasoning(seasoningInfo);
+                seasoning = new Seasoning(seasoningDto);
             } else {
                 seasoning = seasoningOptional.get();
-
-                seasoning.updateSeasoning(seasoningInfo);
+                seasoning.updateSeasoning(seasoningDto);
             }
 
             seasoningRepository.save(seasoning);
 
-            for (String seasoningSourceName : seasoningInfo.getSeasoningSourceList()) {
+            for (String seasoningSourceName : seasoningDto.getSeasoningSourceList()) {
                 this.generateSeasoningSeasoningSourceRelation(seasoning, seasoningSourceList, seasoningSourceName);
             }
         }
@@ -234,18 +239,19 @@ public class DataService {
     public void generateDefaultSeasoningSourceData() {
         Data.SeasoningSource seasoningSourceData = new Data.SeasoningSource();
 
-        for (SeasoningSource seasoningSource : seasoningSourceData.getSeasoningSourceList()) {
-            Optional<SeasoningSource> seasoningSourceOptional = seasoningSourceRepository.findById(seasoningSource.getSeasoningSourceId());
+        for (SeasoningDto.SeasoningSourceDto seasoningSourceDto : seasoningSourceData.getSeasoningSourceDtoList()) {
+            SeasoningSource seasoningSource;
+
+            Optional<SeasoningSource> seasoningSourceOptional = seasoningSourceRepository.findById(seasoningSourceDto.getSeasoningSourceId());
 
             if (seasoningSourceOptional.isEmpty()) {
-                seasoningSourceRepository.save(seasoningSource);
+                seasoningSource = new SeasoningSource(seasoningSourceDto);
             } else {
-                SeasoningSource existSeasoningSource = seasoningSourceOptional.get();
-
-                existSeasoningSource.updateSeasoningSource(seasoningSource.getName(), seasoningSource.getColor());
-
-                seasoningSourceRepository.save(seasoningSource);
+                seasoningSource = seasoningSourceOptional.get();
+                seasoningSource.updateSeasoningSource(seasoningSourceDto);
             }
+
+            seasoningSourceRepository.save(seasoningSource);
         }
     }
 
@@ -255,24 +261,23 @@ public class DataService {
         List<Party> partyList = partyRepository.findAll();
         List<Unlock> unlockList = unlockRepository.findAll();
 
-        for (Data.DishInfo dishInfo : dishData.getDishJsonList()) {
+        for (DishDto dishDto : dishData.getDishDtoList()) {
             Dish dish;
 
-            Optional<Dish> dishOptional = dishRepository.findById(dishInfo.getDishId());
+            Optional<Dish> dishOptional = dishRepository.findById(dishDto.getDishId());
 
-            Unlock unlock = this.getUnlock(dishInfo.getUnlock(), unlockList);
+            Unlock unlock = this.getUnlock(dishDto.getUnlock(), unlockList);
 
             if (dishOptional.isEmpty()) {
-                dish = new Dish(dishInfo, unlock);
+                dish = new Dish(dishDto, unlock);
             } else {
                 dish = dishOptional.get();
-
-                dish.updateDish(dishInfo, unlock);
+                dish.updateDish(dishDto, unlock);
             }
 
             dishRepository.save(dish);
 
-            for (String partyName : dishInfo.getPartyList()) {
+            for (String partyName : dishDto.getPartyList()) {
                 this.generateDishPartyRelation(dish, partyList, partyName);
             }
         }
@@ -316,36 +321,38 @@ public class DataService {
     public void generateDefaultPartyData() {
         Data.Party partyData = new Data.Party();
 
-        for (Party party : partyData.getPartyList()) {
-            Optional<Party> partyOptional = partyRepository.findById(party.getPartyId());
+        for (DishDto.PartyDto partyDto : partyData.getPartyDtoList()) {
+            Party party;
+
+            Optional<Party> partyOptional = partyRepository.findById(partyDto.getPartyId());
 
             if (partyOptional.isEmpty()) {
-                partyRepository.save(party);
+                party = new Party(partyDto);
             } else {
-                Party existParty = partyOptional.get();
-
-                existParty.updateParty(party.getName(), party.getColor());
-
-                partyRepository.save(existParty);
+                party = partyOptional.get();
+                party.updateParty(partyDto);
             }
+
+            partyRepository.save(party);
         }
     }
 
     public void generateDefaultUnlockData() {
         Data.Unlock unlockData = new Data.Unlock();
 
-        for (Unlock unlock : unlockData.getUnlockList()) {
-            Optional<Unlock> unlockOptional = unlockRepository.findById(unlock.getUnlockId());
+        for (DishDto.UnlockDto unlockDto : unlockData.getUnlockDtoList()) {
+            Unlock unlock;
+
+            Optional<Unlock> unlockOptional = unlockRepository.findById(unlockDto.getUnlockId());
 
             if (unlockOptional.isEmpty()) {
-                unlockRepository.save(unlock);
+                unlock = new Unlock(unlockDto);
             } else {
-                Unlock existUnlock = unlockOptional.get();
-
-                existUnlock.updateUnlock(unlock.getName());
-
-                unlockRepository.save(existUnlock);
+                unlock = unlockOptional.get();
+                unlock.updateUnlock(unlockDto);
             }
+
+            unlockRepository.save(unlock);
         }
     }
 

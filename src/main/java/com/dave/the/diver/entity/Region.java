@@ -1,5 +1,6 @@
 package com.dave.the.diver.entity;
 
+import com.dave.the.diver.dto.FishDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,20 +25,17 @@ public class Region {
     private String color;
 
     public Region(
-        String regionId,
-        String name,
-        String color
+        FishDto.RegionDto regionDto
     ) {
-        this.regionId = regionId;
-        this.name = name;
-        this.color = color;
+        this.regionId = regionDto.getRegionId();
+        this.name = regionDto.getName();
+        this.color = regionDto.getColor();
     }
 
     public void updateRegion(
-        String name,
-        String color
+        FishDto.RegionDto regionDto
     ) {
-        this.name = name;
-        this.color = color;
+        this.name = regionDto.getName();
+        this.color = regionDto.getColor();
     }
 }

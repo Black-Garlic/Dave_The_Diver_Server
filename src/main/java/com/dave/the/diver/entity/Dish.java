@@ -1,6 +1,7 @@
 package com.dave.the.diver.entity;
 
 import com.dave.the.diver.constant.Data;
+import com.dave.the.diver.dto.DishDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -50,29 +51,29 @@ public class Dish {
     private List<DishPartyRelation> dishPartyRelationList;
 
     public Dish(
-        Data.DishInfo dishInfo,
+        DishDto dishDto,
         Unlock unlock
     ) {
-        this.dishId = dishInfo.getDishId();
-        this.name = dishInfo.getName();
-        this.maxCost = dishInfo.getMaxCost();
-        this.maxScore = dishInfo.getMaxScore();
-        this.maxCount = dishInfo.getMaxCount();
-        this.maxLevel = dishInfo.getMaxLevel();
-        this.flame = dishInfo.getFlame();
+        this.dishId = dishDto.getDishId();
+        this.name = dishDto.getName();
+        this.maxCost = dishDto.getMaxCost();
+        this.maxScore = dishDto.getMaxScore();
+        this.maxCount = dishDto.getMaxCount();
+        this.maxLevel = dishDto.getMaxLevel();
+        this.flame = dishDto.getFlame();
         this.unlock = unlock;
     }
 
     public void updateDish(
-        Data.DishInfo dishInfo,
+        DishDto dishDto,
         Unlock unlock
     ) {
-        this.name = dishInfo.getName();
-        this.maxCost = dishInfo.getMaxCost();
-        this.maxScore = dishInfo.getMaxScore();
-        this.maxCount = dishInfo.getMaxCount();
-        this.maxLevel = dishInfo.getMaxLevel();
-        this.flame = dishInfo.getFlame();
+        this.name = dishDto.getName();
+        this.maxCost = dishDto.getMaxCost();
+        this.maxScore = dishDto.getMaxScore();
+        this.maxCount = dishDto.getMaxCount();
+        this.maxLevel = dishDto.getMaxLevel();
+        this.flame = dishDto.getFlame();
         this.unlock = unlock;
     }
 }

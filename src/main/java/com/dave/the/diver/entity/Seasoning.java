@@ -1,6 +1,7 @@
 package com.dave.the.diver.entity;
 
 import com.dave.the.diver.constant.Data;
+import com.dave.the.diver.dto.SeasoningDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -25,17 +26,17 @@ public class Seasoning {
     private int rank;
 
     public Seasoning(
-        Data.SeasoningInfo seasoningInfo
+        SeasoningDto seasoningDto
     ) {
-        this.seasoningId = seasoningInfo.getSeasoningId();
-        this.name = seasoningInfo.getName();
-        this.rank = seasoningInfo.getRank();
+        this.seasoningId = seasoningDto.getSeasoningId();
+        this.name = seasoningDto.getName();
+        this.rank = seasoningDto.getRank();
     }
 
     public void updateSeasoning(
-        Data.SeasoningInfo seasoningInfo
+        SeasoningDto seasoningDto
     ) {
-        this.name = seasoningInfo.getName();
-        this.rank = seasoningInfo.getRank();
+        this.name = seasoningDto.getName();
+        this.rank = seasoningDto.getRank();
     }
 }

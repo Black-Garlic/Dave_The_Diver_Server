@@ -1,5 +1,6 @@
 package com.dave.the.diver.entity;
 
+import com.dave.the.diver.dto.FishDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,20 +25,17 @@ public class Time {
     private String color;
 
     public Time(
-        String timeId,
-        String name,
-        String color
+        FishDto.TimeDto timeDto
     ) {
-        this.timeId = timeId;
-        this.name = name;
-        this.color = color;
+        this.timeId = timeDto.getTimeId();
+        this.name = timeDto.getName();
+        this.color = timeDto.getColor();
     }
 
     public void updateTime(
-        String name,
-        String color
+        FishDto.TimeDto timeDto
     ) {
-        this.name = name;
-        this.color = color;
+        this.name = timeDto.getName();
+        this.color = timeDto.getColor();
     }
 }

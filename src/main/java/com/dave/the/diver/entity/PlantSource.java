@@ -1,5 +1,6 @@
 package com.dave.the.diver.entity;
 
+import com.dave.the.diver.dto.PlantDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,20 +25,17 @@ public class PlantSource {
     private String color;
 
     public PlantSource(
-        String plantSourceId,
-        String name,
-        String color
+        PlantDto.PlantSourceDto plantSourceDto
     ) {
-        this.plantSourceId = plantSourceId;
-        this.name = name;
-        this.color = color;
+        this.plantSourceId = plantSourceDto.getPlantSourceId();
+        this.name = plantSourceDto.getName();
+        this.color = plantSourceDto.getColor();
     }
 
     public void updatePlantSource(
-        String name,
-        String color
+        PlantDto.PlantSourceDto plantSourceDto
     ) {
-        this.name = name;
-        this.color = color;
+        this.name = plantSourceDto.getName();
+        this.color = plantSourceDto.getColor();
     }
 }

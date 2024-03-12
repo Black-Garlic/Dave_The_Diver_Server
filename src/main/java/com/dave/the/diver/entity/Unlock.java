@@ -1,5 +1,6 @@
 package com.dave.the.diver.entity;
 
+import com.dave.the.diver.dto.DishDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -21,16 +22,15 @@ public class Unlock {
     private String name;
 
     public Unlock(
-        String unlockId,
-        String name
+        DishDto.UnlockDto unlockDto
     ) {
-        this.unlockId = unlockId;
-        this.name = name;
+        this.unlockId = unlockDto.getUnlockId();
+        this.name = unlockDto.getName();
     }
 
     public void updateUnlock(
-        String name
+        DishDto.UnlockDto unlockDto
     ) {
-        this.name = name;
+        this.name = unlockDto.getName();
     }
 }

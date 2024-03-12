@@ -1,6 +1,7 @@
 package com.dave.the.diver.entity;
 
 import com.dave.the.diver.constant.Data;
+import com.dave.the.diver.dto.FishDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -33,7 +34,7 @@ public class Fish {
     private Time time;
 
     public Fish(
-        Data.FishInfo fishInfo,
+        FishDto fishInfo,
         Region region,
         Time time
     ) {
@@ -45,7 +46,7 @@ public class Fish {
     }
 
     public void updateFish(
-        Data.FishInfo fishInfo,
+        FishDto fishInfo,
         Region region,
         Time time
     ) {

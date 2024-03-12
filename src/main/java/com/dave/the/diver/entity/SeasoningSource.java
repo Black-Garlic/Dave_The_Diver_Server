@@ -1,5 +1,6 @@
 package com.dave.the.diver.entity;
 
+import com.dave.the.diver.dto.SeasoningDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,20 +25,17 @@ public class SeasoningSource {
     private String color;
 
     public SeasoningSource(
-        String seasoningSourceId,
-        String name,
-        String color
+        SeasoningDto.SeasoningSourceDto seasoningSourceDto
     ) {
-        this.seasoningSourceId = seasoningSourceId;
-        this.name = name;
-        this.color = color;
+        this.seasoningSourceId = seasoningSourceDto.getSeasoningSourceId();
+        this.name = seasoningSourceDto.getName();
+        this.color = seasoningSourceDto.getColor();
     }
 
     public void updateSeasoningSource(
-        String name,
-        String color
+        SeasoningDto.SeasoningSourceDto seasoningSourceDto
     ) {
-        this.name = name;
-        this.color = color;
+        this.name = seasoningSourceDto.getName();
+        this.color = seasoningSourceDto.getColor();
     }
 }

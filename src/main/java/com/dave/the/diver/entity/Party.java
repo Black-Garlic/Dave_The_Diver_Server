@@ -1,5 +1,6 @@
 package com.dave.the.diver.entity;
 
+import com.dave.the.diver.dto.DishDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,20 +25,17 @@ public class Party {
     private String color;
 
     public Party(
-        String partyId,
-        String name,
-        String color
+        DishDto.PartyDto partyDto
     ) {
-        this.partyId = partyId;
-        this.name = name;
-        this.color = color;
+        this.partyId = partyDto.getPartyId();
+        this.name = partyDto.getName();
+        this.color = partyDto.getColor();
     }
 
     public void updateParty(
-        String name,
-        String color
+        DishDto.PartyDto partyDto
     ) {
-        this.name = name;
-        this.color = color;
+        this.name = partyDto.getName();
+        this.color = partyDto.getColor();
     }
 }

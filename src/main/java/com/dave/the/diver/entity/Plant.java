@@ -1,6 +1,7 @@
 package com.dave.the.diver.entity;
 
 import com.dave.the.diver.constant.Data;
+import com.dave.the.diver.dto.PlantDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -23,17 +24,17 @@ public class Plant {
     private int rank;
 
     public Plant(
-        Data.PlantInfo plantInfo
+        PlantDto plantDto
     ) {
-        this.plantId = plantInfo.getPlantId();
-        this.name = plantInfo.getName();
-        this.rank = plantInfo.getRank();
+        this.plantId = plantDto.getPlantId();
+        this.name = plantDto.getName();
+        this.rank = plantDto.getRank();
     }
 
     public void updatePlant(
-        Data.PlantInfo plantInfo
+        PlantDto plantDto
     ) {
-        this.name = plantInfo.getName();
-        this.rank = plantInfo.getRank();
+        this.name = plantDto.getName();
+        this.rank = plantDto.getRank();
     }
 }
