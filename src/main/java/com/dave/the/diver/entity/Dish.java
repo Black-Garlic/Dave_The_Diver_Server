@@ -49,6 +49,12 @@ public class Dish {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<DishPartyRelation> dishPartyRelationList;
 
+    @OneToMany(mappedBy = "dish",
+        fetch = FetchType.EAGER
+    )
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Recipe> recipeList;
+
     public Dish(
         DishDto dishDto,
         Unlock unlock

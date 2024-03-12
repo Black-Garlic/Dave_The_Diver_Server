@@ -22,4 +22,12 @@ public class DishService {
 
         return dishMapper.convertDishListToDishDtoList(dishList);
     }
+
+    public DishDto getDishDetail(
+        String dishId
+    ) {
+        Dish dish = dishRepository.findById(dishId).orElseThrow();
+
+        return dishMapper.convertDishToDishDtoWithRecipe(dish);
+    }
 }

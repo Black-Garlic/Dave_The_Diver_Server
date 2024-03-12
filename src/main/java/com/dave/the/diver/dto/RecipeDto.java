@@ -85,6 +85,7 @@ public class RecipeDto {
         }
     }
 
+    @Getter
     public static class IngredientDto {
         private final String ingredientId;
         private final String name;

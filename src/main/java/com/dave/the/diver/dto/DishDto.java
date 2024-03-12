@@ -4,6 +4,7 @@ import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Party;
 import com.dave.the.diver.entity.Unlock;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -26,6 +27,8 @@ public class DishDto {
     private String unlock;
     private List<PartyDto> partyDtoList;
     private List<String> partyList;
+    @Setter
+    private List<RecipeDto> recipeDtoList;
 
     public DishDto(
         Dish dish

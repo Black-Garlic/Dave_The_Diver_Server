@@ -42,6 +42,7 @@ public class Path {
      ** Dish
      ***********************************/
     public static final String DISH = API + "/dish";
+    public static final String DISH_DETAIL = DISH + "/{id}";
 
     /***********************************
      ** Dish Level
