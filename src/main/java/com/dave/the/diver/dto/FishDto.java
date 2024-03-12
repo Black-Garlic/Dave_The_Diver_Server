@@ -1,6 +1,8 @@
 package com.dave.the.diver.dto;
 
 import com.dave.the.diver.entity.Fish;
+import com.dave.the.diver.entity.Region;
+import com.dave.the.diver.entity.Time;
 import lombok.Getter;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -11,7 +13,9 @@ public class FishDto {
     private String fishId;
     private String name;
     private int rank;
+    private RegionDto regionDto;
     private String region;
+    private TimeDto timeDto;
     private String time;
 
     public FishDto(
@@ -20,8 +24,8 @@ public class FishDto {
         this.fishId = fish.getFishId();
         this.name = fish.getName();
         this.rank = fish.getRank();
-        this.region = fish.getRegion().getName();
-        this.time = fish.getTime().getName();
+        this.regionDto = new RegionDto(fish.getRegion());
+        this.timeDto = new TimeDto(fish.getTime());
     }
 
     public FishDto(
@@ -57,6 +61,14 @@ public class FishDto {
         private final String name;
         private final String color;
 
+        private RegionDto(
+            Region region
+        ) {
+            this.regionId = region.getRegionId();
+            this.name = region.getName();
+            this.color = region.getColor();
+        }
+
         public RegionDto(
             String regionId,
             String name,
@@ -74,6 +86,14 @@ public class FishDto {
         private final String timeId;
         private final String name;
         private final String color;
+
+        public TimeDto(
+            Time time
+        ) {
+            this.timeId = time.getTimeId();
+            this.name = time.getName();
+            this.color = time.getColor();
+        }
 
         public TimeDto(
             String timeId,
