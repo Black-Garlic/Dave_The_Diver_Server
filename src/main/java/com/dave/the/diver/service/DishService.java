@@ -6,6 +6,8 @@ import com.dave.the.diver.mapper.DishMapper;
 import com.dave.the.diver.repository.DishRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,12 +19,14 @@ public class DishService {
 
     private final DishMapper dishMapper;
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<DishDto> getDishList() {
         List<Dish> dishList = dishRepository.findAll();
 
         return dishMapper.convertDishListToDishDtoList(dishList);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public DishDto getDishDetail(
         String dishId
     ) {

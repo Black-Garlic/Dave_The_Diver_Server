@@ -6,6 +6,8 @@ import com.dave.the.diver.mapper.PlantMapper;
 import com.dave.the.diver.repository.PlantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class PlantService {
 
     private final PlantMapper plantMapper;
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<PlantDto> getPlantList() {
         List<Plant> plantList = plantRepository.findAll();
 

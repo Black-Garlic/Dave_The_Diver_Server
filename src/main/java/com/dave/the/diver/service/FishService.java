@@ -6,6 +6,8 @@ import com.dave.the.diver.mapper.FishMapper;
 import com.dave.the.diver.repository.FishRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class FishService {
 
     private final FishMapper fishMapper;
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<FishDto> getFishList() {
         List<Fish> fishList = fishRepository.findAll();
 

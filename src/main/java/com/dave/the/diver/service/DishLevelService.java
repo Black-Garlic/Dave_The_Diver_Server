@@ -10,6 +10,8 @@ import com.dave.the.diver.repository.ProfileRepository;
 import com.dave.the.diver.vm.DishVM;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class DishLevelService {
 
     private final DishLevelMapper dishLevelMapper;
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<DishLevelDto> getDishLevelListByProfileId(
         DishVM.DishLevelList dishVM
     ) {

@@ -6,6 +6,7 @@ import com.dave.the.diver.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class DataService {
 
     private final DefaultDataService defaultDataService;
 
+    @Transactional
     public void generateTotalDefaultData() throws JSONException {
         // Fish
         this.generateDefaultRegionData();
@@ -52,6 +54,7 @@ public class DataService {
         this.generateDefaultRecipeData();
     }
 
+    @Transactional
     public void generateDefaultFishData() throws JSONException {
         List<FishDto> fishDtoList = defaultDataService.getDefaultFishDtoList();
         List<Region> regionList = regionRepository.findAll();
@@ -111,6 +114,7 @@ public class DataService {
         return null;
     }
 
+    @Transactional
     public void generateDefaultRegionData() {
         List<FishDto.RegionDto> regionDtoList = defaultDataService.getDefaultRegionDtoList();
 
@@ -130,6 +134,7 @@ public class DataService {
         }
     }
 
+    @Transactional
     public void generateDefaultTimeData() {
         List<FishDto.TimeDto> timeDtoList = defaultDataService.getDefaultTimeDtoList();
 
@@ -149,6 +154,7 @@ public class DataService {
         }
     }
 
+    @Transactional
     public void generateDefaultPlantData() throws JSONException {
         List<PlantDto> plantDtoList = defaultDataService.getDefaultPlantDtoList();
         List<Source> sourceList = sourceRepository.findAll();
@@ -173,7 +179,8 @@ public class DataService {
         }
     }
 
-    private void generatePlantPlantSourceRelation(
+    @Transactional
+    public void generatePlantPlantSourceRelation(
         Plant plant,
         List<Source> sourceList,
         String plantSourceName
@@ -191,6 +198,7 @@ public class DataService {
         }
     }
 
+    @Transactional
     public void generateDefaultPlantSourceData() {
         List<SourceDto> sourceDtoList = defaultDataService.getDefaultPlantSourceDtoList();
 
@@ -210,6 +218,7 @@ public class DataService {
         }
     }
 
+    @Transactional
     public void generateDefaultSeasoningData() throws JSONException {
         List<SeasoningDto> seasoningDtoList = defaultDataService.getDefaultSeasoningDtoList();
         List<Source> sourceList = sourceRepository.findAll();
@@ -234,7 +243,8 @@ public class DataService {
         }
     }
 
-    private void generateSeasoningSeasoningSourceRelation(
+    @Transactional
+    public void generateSeasoningSeasoningSourceRelation(
         Seasoning seasoning,
         List<Source> sourceList,
         String seasoningSourceName
@@ -252,6 +262,7 @@ public class DataService {
         }
     }
 
+    @Transactional
     public void generateDefaultSeasoningSourceData() {
         List<SourceDto> seasoningSourceDtoList = defaultDataService.getDefaultSeasoningSourceDtoList();
 
@@ -271,6 +282,7 @@ public class DataService {
         }
     }
 
+    @Transactional
     public void generateDefaultDishData() throws JSONException {
         List<DishDto> dishDtoList = defaultDataService.getDefaultDishDtoList();
         List<Party> partyList = partyRepository.findAll();
@@ -315,7 +327,8 @@ public class DataService {
         return null;
     }
 
-    private void generateDishPartyRelation(
+    @Transactional
+    public void generateDishPartyRelation(
         Dish dish,
         List<Party> partyList,
         String partyName
@@ -333,6 +346,7 @@ public class DataService {
         }
     }
 
+    @Transactional
     public void generateDefaultPartyData() {
         List<DishDto.PartyDto> partyDtoList = defaultDataService.getDefaultPartyDtoList();
 
@@ -352,6 +366,7 @@ public class DataService {
         }
     }
 
+    @Transactional
     public void generateDefaultUnlockData() {
         List<DishDto.UnlockDto> unlockDtoList = defaultDataService.getDefaultUnlockDtoList();
 
@@ -371,6 +386,7 @@ public class DataService {
         }
     }
 
+    @Transactional
     public void generateDefaultRecipeData() throws JSONException {
         List<RecipeDto> recipeDtoList = defaultDataService.getDefaultRecipeData();
         List<Dish> dishList = dishRepository.findAll();
@@ -427,26 +443,31 @@ public class DataService {
         this.deleteDefaultDishInfo();
     }
 
+    @Transactional
     public void deleteDefaultFishData() {
         fishRepository.deleteAll();
         regionRepository.deleteAll();
         timeRepository.deleteAll();
     }
 
+    @Transactional
     public void deleteDefaultPlantData() {
         plantSourceRelationRepository.deleteAll();
         plantRepository.deleteAll();
     }
 
+    @Transactional
     public void deleteDefaultSeasoningData() {
         seasoningSourceRelationRepository.deleteAll();
         seasoningRepository.deleteAll();
     }
 
+    @Transactional
     public void deleteDefaultSourceData() {
         sourceRepository.deleteAll();
     }
 
+    @Transactional
     public void deleteDefaultDishInfo() {
         recipeRepository.deleteAll();
         dishPartyRelationRepository.deleteAll();
