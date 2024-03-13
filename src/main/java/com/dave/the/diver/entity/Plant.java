@@ -22,7 +22,7 @@ public class Plant {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "rank", nullable = false)
+    @Column(name = "plant_rank", nullable = false)
     private int rank;
 
     @OneToMany(mappedBy = "plant",

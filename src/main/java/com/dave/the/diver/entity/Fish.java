@@ -19,7 +19,7 @@ public class Fish {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "rank")
+    @Column(name = "fish_rank")
     private int rank = 1;
 
     @JsonIgnore
