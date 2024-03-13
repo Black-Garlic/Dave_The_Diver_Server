@@ -787,7 +787,7 @@ public class DefaultDataService {
         recipeDtoList.add(new RecipeDto("{\"dishId\":\"Hotpeppertuna\",\"type\":\"조미료\",\"count\":1,\"ingredientId\":\"Sesame_Seed\"}"));
         recipeDtoList.add(new RecipeDto("{\"dishId\":\"Boiled_Asian_Sheepshead_Wrasse_And_Truffle\",\"type\":\"해산물\",\"count\":3,\"ingredientId\":\"Sheepshead\"}"));
         recipeDtoList.add(new RecipeDto("{\"dishId\":\"Boiled_Asian_Sheepshead_Wrasse_And_Truffle\",\"type\":\"부재료\",\"count\":3,\"ingredientId\":\"Kelp\"}"));
-        recipeDtoList.add(new RecipeDto("{\"dishId\":\"Boiled_Asian_Sheepshead_Wrasse_And_Truffle\",\"type\":\"부재료\",\"count\":1,\"ingredientId\":\"Truffle\"}"));
+        recipeDtoList.add(new RecipeDto("{\"dishId\":\"Boiled_Asian_Sheepshead_Wrasse_And_Truffle\",\"type\":\"조미료\",\"count\":1,\"ingredientId\":\"Truffle\"}"));
         recipeDtoList.add(new RecipeDto("{\"dishId\":\"Sweet_And_Sour_Stargazer\",\"type\":\"해산물\",\"count\":1,\"ingredientId\":\"Bluespotted_Stargazer\"}"));
         recipeDtoList.add(new RecipeDto("{\"dishId\":\"Sweet_And_Sour_Stargazer\",\"type\":\"부재료\",\"count\":1,\"ingredientId\":\"Wheat\"}"));
         recipeDtoList.add(new RecipeDto("{\"dishId\":\"Sweet_And_Sour_Stargazer\",\"type\":\"부재료\",\"count\":1,\"ingredientId\":\"Egg\"}"));
@@ -1087,7 +1087,7 @@ public class DefaultDataService {
         recipeDtoList.add(new RecipeDto("{\"dishId\":\"Secret_3\",\"type\":\"조미료\",\"count\":1,\"ingredientId\":\"Truffle\"}"));
         recipeDtoList.add(new RecipeDto("{\"dishId\":\"Secret_4\",\"type\":\"해산물\",\"count\":3,\"ingredientId\":\"Antarctic_Octopus\"}"));
         recipeDtoList.add(new RecipeDto("{\"dishId\":\"Secret_4\",\"type\":\"부재료\",\"count\":3,\"ingredientId\":\"Kajime\"}"));
-        recipeDtoList.add(new RecipeDto("{\"dishId\":\"Secret_4\",\"type\":\"부재료\",\"count\":1,\"ingredientId\":\"Truffle\"}"));
+        recipeDtoList.add(new RecipeDto("{\"dishId\":\"Secret_4\",\"type\":\"조미료\",\"count\":1,\"ingredientId\":\"Truffle\"}"));
         recipeDtoList.add(new RecipeDto("{\"dishId\":\"Secret_5\",\"type\":\"해산물\",\"count\":2,\"ingredientId\":\"Blue_Lobster\"}"));
         recipeDtoList.add(new RecipeDto("{\"dishId\":\"Secret_5\",\"type\":\"조미료\",\"count\":1,\"ingredientId\":\"Truffle\"}"));
 
