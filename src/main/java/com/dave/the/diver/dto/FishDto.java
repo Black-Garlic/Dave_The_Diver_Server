@@ -27,16 +27,14 @@ public class FishDto {
 
     public FishDto(
         Fish fish,
-        List<Dish> dishList
+        List<DishDto> dishDtoList
     ) {
         this.fishId = fish.getFishId();
         this.name = fish.getName();
         this.rank = fish.getRank();
         this.regionDto = new RegionDto(fish.getRegion());
         this.timeDto = new TimeDto(fish.getTime());
-        this.dishDtoList = dishList.stream()
-            .map(DishDto::new)
-            .collect(Collectors.toList());
+        this.dishDtoList = dishDtoList;
     }
 
     public FishDto(

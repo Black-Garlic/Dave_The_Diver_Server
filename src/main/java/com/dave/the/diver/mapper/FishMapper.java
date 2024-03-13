@@ -1,5 +1,6 @@
 package com.dave.the.diver.mapper;
 
+import com.dave.the.diver.dto.DishDto;
 import com.dave.the.diver.dto.FishDto;
 import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Fish;
@@ -18,6 +19,8 @@ public class FishMapper {
 
     private final DishService dishService;
 
+    private final DishMapper dishMapper;
+
     public List<FishDto> convertFishListToFishDtoList(
         List<Fish> fishList,
         List<Dish> dishList
@@ -32,7 +35,8 @@ public class FishMapper {
         List<Dish> dishList
     ) {
         List<Dish> targetDishList = dishService.getDishListByRecipe(fish.getFishId(), dishList);
+        List<DishDto> targetDishDtoList = dishMapper.convertDishListToDishDtoList(targetDishList);
 
-        return new FishDto(fish, targetDishList);
+        return new FishDto(fish, targetDishDtoList);
     }
 }
