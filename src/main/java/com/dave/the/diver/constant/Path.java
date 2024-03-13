@@ -40,6 +40,7 @@ public class Path {
      ** Seasoning
      ***********************************/
     public static final String SEASONING = API + "/seasoning";
+    public static final String SEASONING_DETAIL = SEASONING + "/{id}";
 
     /***********************************
      ** Dish

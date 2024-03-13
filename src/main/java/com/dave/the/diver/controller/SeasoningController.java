@@ -5,6 +5,7 @@ import com.dave.the.diver.dto.Result;
 import com.dave.the.diver.service.SeasoningService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,6 +20,21 @@ public class SeasoningController {
 
         try {
             result.setSuccessResult(seasoningService.getSeasoningList());
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @GetMapping(path = Path.SEASONING_DETAIL, produces = "application/json")
+    public Result getSeasoningDetail(
+        @PathVariable(value = "id") String seasoningId
+    ) {
+        Result result = new Result();
+
+        try {
+            result.setSuccessResult(seasoningService.getSeasoningDetail(seasoningId));
         } catch (Exception e) {
             result.setFailResult(e.getMessage());
         }

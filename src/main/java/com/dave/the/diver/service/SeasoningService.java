@@ -30,4 +30,14 @@ public class SeasoningService {
 
         return seasoningMapper.convertSeasoningListToSeasoningDtoList(seasoningList, dishList);
     }
+
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public SeasoningDto getSeasoningDetail(
+        String seasoningId
+    ) {
+        Seasoning seasoning = seasoningRepository.findById(seasoningId).orElseThrow();
+        List<Dish> dishList = dishRepository.findByRecipeList_Type(Recipe.Type.SEASONING);
+
+        return seasoningMapper.convertSeasoningToSeasoningDto(seasoning, dishList);
+    }
 }
