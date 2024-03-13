@@ -1,11 +1,15 @@
 package com.dave.the.diver.dto;
 
+import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Fish;
 import com.dave.the.diver.entity.Region;
 import com.dave.the.diver.entity.Time;
 import lombok.Getter;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class FishDto {
@@ -17,15 +21,20 @@ public class FishDto {
     private String region;
     private TimeDto timeDto;
     private String time;
+    private List<DishDto> dishDtoList;
 
     public FishDto(
-        Fish fish
+        Fish fish,
+        List<Dish> dishList
     ) {
         this.fishId = fish.getFishId();
         this.name = fish.getName();
         this.rank = fish.getRank();
         this.regionDto = new RegionDto(fish.getRegion());
         this.timeDto = new TimeDto(fish.getTime());
+        this.dishDtoList = dishList.stream()
+            .map(DishDto::new)
+            .collect(Collectors.toList());
     }
 
     public FishDto(
