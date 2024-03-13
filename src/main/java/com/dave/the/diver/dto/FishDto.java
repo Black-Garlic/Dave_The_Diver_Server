@@ -4,6 +4,7 @@ import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Fish;
 import com.dave.the.diver.entity.Region;
 import com.dave.the.diver.entity.Time;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class FishDto {
 
     private String fishId;
@@ -64,6 +66,7 @@ public class FishDto {
     }
 
     @Getter
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class RegionDto {
 
         private final String regionId;
@@ -90,6 +93,7 @@ public class FishDto {
     }
 
     @Getter
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class TimeDto {
 
         private final String timeId;

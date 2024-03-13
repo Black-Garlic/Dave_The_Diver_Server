@@ -1,6 +1,7 @@
 package com.dave.the.diver.dto;
 
 import com.dave.the.diver.entity.Plant;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PlantDto {
 
     private String plantId;

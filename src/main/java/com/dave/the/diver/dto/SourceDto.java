@@ -1,9 +1,11 @@
 package com.dave.the.diver.dto;
 
 import com.dave.the.diver.entity.Source;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 
 @Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SourceDto {
 
     private final String sourceId;

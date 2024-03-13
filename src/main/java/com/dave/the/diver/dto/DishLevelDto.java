@@ -1,9 +1,11 @@
 package com.dave.the.diver.dto;
 
 import com.dave.the.diver.entity.DishLevel;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 
 @Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class DishLevelDto {
     private final String dishLevelId;
 

@@ -4,11 +4,13 @@ import com.dave.the.diver.entity.Fish;
 import com.dave.the.diver.entity.Plant;
 import com.dave.the.diver.entity.Recipe;
 import com.dave.the.diver.entity.Seasoning;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 @Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecipeDto {
 
     private String recipeId;
@@ -86,6 +88,7 @@ public class RecipeDto {
     }
 
     @Getter
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class IngredientDto {
         private final String ingredientId;
         private final String name;
