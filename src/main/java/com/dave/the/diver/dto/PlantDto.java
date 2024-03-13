@@ -25,7 +25,7 @@ public class PlantDto {
 
     public PlantDto(
         Plant plant,
-        List<Dish> dishList
+        List<DishDto> dishDtoList
     ) {
         this.plantId = plant.getPlantId();
         this.name = plant.getName();
@@ -33,9 +33,7 @@ public class PlantDto {
         this.sourceDtoList = plant.getPlantSourceRelationList().stream()
             .map(plantSourceRelation -> new SourceDto(plantSourceRelation.getSource()))
             .collect(Collectors.toList());
-        this.dishDtoList = dishList.stream()
-            .map(DishDto::new)
-            .collect(Collectors.toList());
+        this.dishDtoList = dishDtoList;
     }
 
     public PlantDto(

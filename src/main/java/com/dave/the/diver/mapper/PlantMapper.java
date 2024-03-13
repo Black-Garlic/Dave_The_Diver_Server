@@ -1,5 +1,6 @@
 package com.dave.the.diver.mapper;
 
+import com.dave.the.diver.dto.DishDto;
 import com.dave.the.diver.dto.PlantDto;
 import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Plant;
@@ -16,6 +17,8 @@ public class PlantMapper {
 
     private final DishService dishService;
 
+    private final DishMapper dishMapper;
+
     public List<PlantDto> convertPlantListToPlantDtoList(
         List<Plant> plantList,
         List<Dish> dishList
@@ -30,7 +33,8 @@ public class PlantMapper {
         List<Dish> dishList
     ) {
         List<Dish> targetDishList = dishService.getDishListByRecipe(plant.getPlantId(), dishList);
+        List<DishDto> targetDishDtoList = dishMapper.convertDishListToDishDtoList(targetDishList);
 
-        return new PlantDto(plant, targetDishList);
+        return new PlantDto(plant, targetDishDtoList);
     }
 }
