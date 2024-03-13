@@ -1,5 +1,6 @@
 package com.dave.the.diver.mapper;
 
+import com.dave.the.diver.dto.DishDto;
 import com.dave.the.diver.dto.SeasoningDto;
 import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Seasoning;
@@ -16,6 +17,8 @@ public class SeasoningMapper {
 
     private final DishService dishService;
 
+    private final DishMapper dishMapper;
+
     public List<SeasoningDto> convertSeasoningListToSeasoningDtoList(
         List<Seasoning> seasoningList,
         List<Dish> dishList
@@ -30,7 +33,8 @@ public class SeasoningMapper {
         List<Dish> dishList
     ) {
         List<Dish> targetDishList = dishService.getDishListByRecipe(seasoning.getSeasoningId(), dishList);
+        List<DishDto> targetDishDtoList = dishMapper.convertDishListToDishDtoList(targetDishList);
 
-        return new SeasoningDto(seasoning, targetDishList);
+        return new SeasoningDto(seasoning, targetDishDtoList);
     }
 }

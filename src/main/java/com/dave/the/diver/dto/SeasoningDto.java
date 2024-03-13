@@ -25,7 +25,7 @@ public class SeasoningDto {
 
     public SeasoningDto(
         Seasoning seasoning,
-        List<Dish> dishList
+        List<DishDto> dishDtoList
     ) {
         this.seasoningId = seasoning.getSeasoningId();
         this.name = seasoning.getName();
@@ -33,9 +33,7 @@ public class SeasoningDto {
         this.sourceDtoList = seasoning.getSeasoningSourceRelationList().stream()
             .map(seasoningSourceRelation -> new SourceDto(seasoningSourceRelation.getSource()))
             .collect(Collectors.toList());
-        this.dishDtoList = dishList.stream()
-            .map(DishDto::new)
-            .collect(Collectors.toList());
+        this.dishDtoList = dishDtoList;
     }
 
     public SeasoningDto(
