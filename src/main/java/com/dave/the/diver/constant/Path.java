@@ -28,6 +28,7 @@ public class Path {
      ** Fish
      ***********************************/
     public static final String FISH = API + "/fish";
+    public static final String FISH_DETAIL = FISH + "/{id}";
 
     /***********************************
      ** Plant

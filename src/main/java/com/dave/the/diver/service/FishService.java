@@ -7,7 +7,6 @@ import com.dave.the.diver.entity.Recipe;
 import com.dave.the.diver.mapper.FishMapper;
 import com.dave.the.diver.repository.DishRepository;
 import com.dave.the.diver.repository.FishRepository;
-import com.dave.the.diver.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,7 +20,6 @@ public class FishService {
 
     private final FishRepository fishRepository;
     private final DishRepository dishRepository;
-    private final RecipeRepository recipeRepository;
 
     private final FishMapper fishMapper;
 
@@ -31,5 +29,15 @@ public class FishService {
         List<Dish> dishList = dishRepository.findByRecipeList_Type(Recipe.Type.FISH);
 
         return fishMapper.convertFishListToFishDtoList(fishList, dishList);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public FishDto getFishDetail(
+        String fishId
+    ) {
+        Fish fish = fishRepository.findById(fishId).orElseThrow();
+        List<Dish> dishList = dishRepository.findByRecipeList_Type(Recipe.Type.FISH);
+
+        return fishMapper.convertFishToFishDto(fish, dishList);
     }
 }
