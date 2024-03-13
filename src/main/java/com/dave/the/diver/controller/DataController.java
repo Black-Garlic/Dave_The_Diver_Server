@@ -4,9 +4,7 @@ import com.dave.the.diver.constant.Path;
 import com.dave.the.diver.dto.Result;
 import com.dave.the.diver.service.DataService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -178,6 +176,22 @@ public class DataController {
 
         try {
             dataService.generateDefaultRecipeData();
+            result.setSuccessResult(null);
+        } catch (Exception e) {
+            result.setFailResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    @PostMapping(path = Path.DATA_DISH_LEVEL, produces = "application/json")
+    public Result generateDefaultDishLevelData(
+        @RequestBody String profileId
+    ) {
+        Result result = new Result();
+
+        try {
+            dataService.generateDefaultDishLevelData(profileId);
             result.setSuccessResult(null);
         } catch (Exception e) {
             result.setFailResult(e.getMessage());

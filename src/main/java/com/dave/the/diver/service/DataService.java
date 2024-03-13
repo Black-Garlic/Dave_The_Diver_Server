@@ -29,6 +29,8 @@ public class DataService {
     private final PartyRepository partyRepository;
     private final UnlockRepository unlockRepository;
     private final RecipeRepository recipeRepository;
+    private final DishLevelRepository dishLevelRepository;
+    private final ProfileRepository profileRepository;
 
     private final DefaultDataService defaultDataService;
 
@@ -426,6 +428,32 @@ public class DataService {
         return null;
     }
 
+    public void generateDefaultDishLevelData(
+        String profileId
+    ) throws JSONException {
+        List<DishLevelDto> dishLevelDtoList = defaultDataService.getDefaultDishLevelList();
+        List<Dish> dishList = dishRepository.findAll();
+        Profile profile = profileRepository.findById(profileId).orElseThrow();
+
+        for (DishLevelDto dishLevelDto : dishLevelDtoList) {
+            Dish dish = this.getDish(dishList, dishLevelDto.getDishId());
+
+            DishLevel dishLevel;
+
+            Optional<DishLevel> dishLevelOptional = dishLevelRepository.findByDishAndProfile(dish, profile);
+
+            if (dishLevelOptional.isEmpty()) {
+                dishLevel = new DishLevel(dishLevelDto, dish, profile);
+            } else {
+                dishLevel = dishLevelOptional.get();
+                dishLevel.updateDishLevel(dishLevelDto);
+            }
+
+            dishLevelRepository.save(dishLevel);
+        }
+    }
+
+    @Transactional
     public void deleteTotalDefaultData() {
         // Fish
         this.deleteDefaultFishData();

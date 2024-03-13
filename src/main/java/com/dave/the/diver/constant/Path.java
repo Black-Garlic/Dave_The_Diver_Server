@@ -23,6 +23,7 @@ public class Path {
     public static final String DATA_PARTY = DATA + "/party";
     public static final String DATA_UNLOCK = DATA + "/unlock";
     public static final String DATA_RECIPE = DATA + "/recipe";
+    public static final String DATA_DISH_LEVEL = DATA + "/dish-level";
 
     /***********************************
      ** Fish

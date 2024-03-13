@@ -16,6 +16,6 @@ public class DishVM {
     public static class Update {
         private String profileId;
         private String dishId;
-        private int level;
+        private int dishLevel;
     }
 }

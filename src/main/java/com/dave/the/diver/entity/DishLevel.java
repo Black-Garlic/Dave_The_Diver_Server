@@ -1,5 +1,7 @@
 package com.dave.the.diver.entity;
 
+import com.dave.the.diver.dto.DishDto;
+import com.dave.the.diver.dto.DishLevelDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -32,18 +34,18 @@ public class DishLevel {
     private int dishLevel;
 
     public DishLevel(
+        DishLevelDto dishLevelDto,
         Dish dish,
-        Profile profile,
-        int dishLevel
+        Profile profile
     ) {
         this.dish = dish;
         this.profile = profile;
-        this.dishLevel = dishLevel;
+        this.dishLevel = dishLevelDto.getDishLevel();
     }
 
     public void updateDishLevel(
-        int dishLevel
+        DishLevelDto dishLevelDto
     ) {
-        this.dishLevel = dishLevel;
+        this.dishLevel = dishLevelDto.getDishLevel();
     }
 }

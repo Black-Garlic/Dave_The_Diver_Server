@@ -45,16 +45,17 @@ public class DishLevelService {
     ) {
         Dish dish = dishRepository.findById(dishVM.getDishId()).orElseThrow();
         Profile profile = profileRepository.findById(dishVM.getProfileId()).orElseThrow();
+        DishLevelDto dishLevelDto = new DishLevelDto(dishVM);
 
         DishLevel dishLevel;
 
         Optional<DishLevel> dishLevelOptional = dishLevelRepository.findByDishAndProfile(dish, profile);
 
         if (dishLevelOptional.isEmpty()) {
-            dishLevel = new DishLevel(dish, profile, dishVM.getLevel());
+            dishLevel = new DishLevel(dishLevelDto, dish, profile);
         } else {
             dishLevel = dishLevelOptional.get();
-            dishLevel.updateDishLevel(dishVM.getLevel());
+            dishLevel.updateDishLevel(dishLevelDto);
         }
 
         dishLevelRepository.save(dishLevel);
