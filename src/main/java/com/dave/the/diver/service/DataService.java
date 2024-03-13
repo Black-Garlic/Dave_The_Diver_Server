@@ -497,6 +497,7 @@ public class DataService {
 
     @Transactional
     public void deleteDefaultDishInfo() {
+        dishLevelRepository.deleteAll();
         recipeRepository.deleteAll();
         dishPartyRelationRepository.deleteAll();
         dishRepository.deleteAll();
