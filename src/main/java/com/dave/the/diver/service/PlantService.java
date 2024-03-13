@@ -30,4 +30,14 @@ public class PlantService {
 
         return plantMapper.convertPlantListToPlantDtoList(plantList, dishList);
     }
+
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public PlantDto getPlantDetail(
+        String plantId
+    ) {
+        Plant plant = plantRepository.findById(plantId).orElseThrow();
+        List<Dish> dishList = dishRepository.findByRecipeList_Type(Recipe.Type.PLANT);
+
+        return plantMapper.convertPlantToPlantDto(plant, dishList);
+    }
 }
