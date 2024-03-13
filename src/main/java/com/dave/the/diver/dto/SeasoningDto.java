@@ -1,5 +1,6 @@
 package com.dave.the.diver.dto;
 
+import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Seasoning;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -20,15 +21,20 @@ public class SeasoningDto {
     private int rank;
     private List<SourceDto> sourceDtoList;
     private List<String> seasoningSourceList;
+    private List<DishDto> dishDtoList;
 
     public SeasoningDto(
-        Seasoning seasoning
+        Seasoning seasoning,
+        List<Dish> dishList
     ) {
         this.seasoningId = seasoning.getSeasoningId();
         this.name = seasoning.getName();
         this.rank = seasoning.getRank();
         this.sourceDtoList = seasoning.getSeasoningSourceRelationList().stream()
             .map(seasoningSourceRelation -> new SourceDto(seasoningSourceRelation.getSource()))
+            .collect(Collectors.toList());
+        this.dishDtoList = dishList.stream()
+            .map(DishDto::new)
             .collect(Collectors.toList());
     }
 

@@ -1,8 +1,11 @@
 package com.dave.the.diver.service;
 
 import com.dave.the.diver.dto.SeasoningDto;
+import com.dave.the.diver.entity.Dish;
+import com.dave.the.diver.entity.Recipe;
 import com.dave.the.diver.entity.Seasoning;
 import com.dave.the.diver.mapper.SeasoningMapper;
+import com.dave.the.diver.repository.DishRepository;
 import com.dave.the.diver.repository.SeasoningRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,13 +19,15 @@ import java.util.List;
 public class SeasoningService {
 
     private final SeasoningRepository seasoningRepository;
+    private final DishRepository dishRepository;
 
     private final SeasoningMapper seasoningMapper;
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<SeasoningDto> getSeasoningList() {
         List<Seasoning> seasoningList = seasoningRepository.findAll();
+        List<Dish> dishList = dishRepository.findByRecipeList_Type(Recipe.Type.SEASONING);
 
-        return seasoningMapper.convertSeasoningListToSeasoningDtoList(seasoningList);
+        return seasoningMapper.convertSeasoningListToSeasoningDtoList(seasoningList, dishList);
     }
 }

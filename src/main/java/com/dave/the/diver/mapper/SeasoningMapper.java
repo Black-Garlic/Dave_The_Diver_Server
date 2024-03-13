@@ -1,26 +1,36 @@
 package com.dave.the.diver.mapper;
 
 import com.dave.the.diver.dto.SeasoningDto;
+import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Seasoning;
+import com.dave.the.diver.service.DishService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class SeasoningMapper {
 
+    private final DishService dishService;
+
     public List<SeasoningDto> convertSeasoningListToSeasoningDtoList(
-        List<Seasoning> seasoningList
+        List<Seasoning> seasoningList,
+        List<Dish> dishList
     ) {
         return seasoningList.stream()
-            .map(this::convertSeasoningToSeasoningDto)
+            .map(seasoning -> this.convertSeasoningToSeasoningDto(seasoning, dishList))
             .collect(Collectors.toList());
     }
 
     public SeasoningDto convertSeasoningToSeasoningDto(
-        Seasoning seasoning
+        Seasoning seasoning,
+        List<Dish> dishList
     ) {
-        return new SeasoningDto(seasoning);
+        List<Dish> targetDishList = dishService.getDishListByRecipe(seasoning.getSeasoningId(), dishList);
+
+        return new SeasoningDto(seasoning, targetDishList);
     }
 }
