@@ -24,14 +24,8 @@ public class DishMapper {
         List<Dish> dishList
     ) {
         return dishList.stream()
-            .map(this::convertDishToDishDto)
+            .map(this::convertDishToDishDtoWithRecipe)
             .collect(Collectors.toList());
-    }
-
-    public DishDto convertDishToDishDto(
-        Dish dish
-    ) {
-        return new DishDto(dish);
     }
 
     public DishDto convertDishToDishDtoWithRecipe(

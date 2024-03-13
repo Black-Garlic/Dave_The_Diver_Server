@@ -9,7 +9,7 @@ import lombok.Getter;
 public class DishLevelDto {
     private final String dishLevelId;
 
-    private final DishDto dish;
+    private final String dishId;
 
     private final int dishLevel;
 
@@ -17,7 +17,7 @@ public class DishLevelDto {
         DishLevel dishLevel
     ) {
         this.dishLevelId = dishLevel.getDishLevelId();
-        this.dish = new DishDto(dishLevel.getDish());
+        this.dishId = dishLevel.getDish().getDishId();
         this.dishLevel = dishLevel.getDishLevel();
     }
 }
