@@ -34,6 +34,7 @@ public class Path {
      ** Plant
      ***********************************/
     public static final String PLANT = API + "/plant";
+    public static final String PLANT_DETAIL = PLANT + "/{id}";
 
     /***********************************
      ** Seasoning

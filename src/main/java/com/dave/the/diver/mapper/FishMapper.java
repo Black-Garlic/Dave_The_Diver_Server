@@ -4,6 +4,8 @@ import com.dave.the.diver.dto.FishDto;
 import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Fish;
 import com.dave.the.diver.entity.Recipe;
+import com.dave.the.diver.service.DishService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,7 +13,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class FishMapper {
+
+    private final DishService dishService;
 
     public List<FishDto> convertFishListToFishDtoList(
         List<Fish> fishList,
@@ -26,16 +31,7 @@ public class FishMapper {
         Fish fish,
         List<Dish> dishList
     ) {
-        List<Dish> targetDishList = new ArrayList<>();
-
-        for (Dish dish : dishList) {
-            for (Recipe recipe : dish.getRecipeList()) {
-                if (recipe.getIngredientId().equals(fish.getFishId())) {
-                    targetDishList.add(recipe.getDish());
-                    break;
-                }
-            }
-        }
+        List<Dish> targetDishList = dishService.getDishListByRecipe(fish.getFishId(), dishList);
 
         return new FishDto(fish, targetDishList);
     }

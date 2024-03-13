@@ -1,5 +1,6 @@
 package com.dave.the.diver.dto;
 
+import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Plant;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -20,15 +21,20 @@ public class PlantDto {
     private int rank;
     private List<SourceDto> sourceDtoList;
     private List<String> sourceList;
+    private List<DishDto> dishDtoList;
 
     public PlantDto(
-        Plant plant
+        Plant plant,
+        List<Dish> dishList
     ) {
         this.plantId = plant.getPlantId();
         this.name = plant.getName();
         this.rank = plant.getRank();
         this.sourceDtoList = plant.getPlantSourceRelationList().stream()
             .map(plantSourceRelation -> new SourceDto(plantSourceRelation.getSource()))
+            .collect(Collectors.toList());
+        this.dishDtoList = dishList.stream()
+            .map(DishDto::new)
             .collect(Collectors.toList());
     }
 

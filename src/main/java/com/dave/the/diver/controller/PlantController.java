@@ -13,6 +13,7 @@ public class PlantController {
 
     private final PlantService plantService;
 
+
     @GetMapping(path = Path.PLANT, produces = "application/json")
     public Result getPlantList() {
         Result result = new Result();
