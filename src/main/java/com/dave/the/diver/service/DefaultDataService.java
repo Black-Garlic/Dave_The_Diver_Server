@@ -13,28 +13,27 @@ public class DefaultDataService {
 
     private enum STAFF {
         STAFF,
-        DRE,
+        DRAE,
         RAPTOR,
         MAKI,
-        KORCANIJI,
+        COHH,
         DAVINA,
         RAUL,
-        RIU,
-        MASAYOSI,
-        MICHEL,
+        LIU,
+        MASAYOSHI,
+        MITCHELL,
         BILLY,
-        EL_NINYO,
+        EL_NINO,
         YONE,
-        YUSKE,
+        YUSUKE,
         ITSUKI,
         JANDI,
         JAMES,
-        CHARLY,
-        CAROLLINA,
+        CHARLIE,
+        CAROLINA,
         KYOKO,
         TOHOKU,
-        PIE,
-
+        PAI,
     }
 
     private enum LEVEL {
