@@ -577,34 +577,34 @@ public class DefaultDataService {
         unlockDtoList.add(new DishDto.UnlockDto("SECRET_RECIPE", "비밀 레시피"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.STAFF.name() + "_" + LEVEL.LV_5.name(), "직원 Lv.5 달성"));
         // TODO 직원 이름 확인
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.DRE.name() + "_" + LEVEL.LV_5.name(), "드레 Lv.5 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.DRAE.name() + "_" + LEVEL.LV_5.name(), "드레 Lv.5 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.RAPTOR.name() + "_" + LEVEL.LV_5.name(), "랩터 Lv.5 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.MAKI.name() + "_" + LEVEL.LV_5.name(), "마키 Lv.5 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.KORCANIJI.name() + "_" + LEVEL.LV_5.name(), "코카니지 Lv.5 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.DRE.name() + "_" + LEVEL.LV_10.name(), "드레 Lv.10 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.COHH.name() + "_" + LEVEL.LV_5.name(), "코카니지 Lv.5 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.DRAE.name() + "_" + LEVEL.LV_10.name(), "드레 Lv.10 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.RAPTOR.name() + "_" + LEVEL.LV_10.name(), "랩터 Lv.10 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.KORCANIJI.name() + "_" + LEVEL.LV_10.name(), "코카니지 Lv.10 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.COHH.name() + "_" + LEVEL.LV_10.name(), "코카니지 Lv.10 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.DAVINA.name() + "_" + LEVEL.LV_15.name(), "다비나 Lv.15 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.DRE.name() + "_" + LEVEL.LV_15.name(), "드레 Lv.15 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.DRAE.name() + "_" + LEVEL.LV_15.name(), "드레 Lv.15 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.RAUL.name() + "_" + LEVEL.LV_15.name(), "라울 Lv.15 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.RAPTOR.name() + "_" + LEVEL.LV_15.name(), "랩터 Lv.15 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.RIU.name() + "_" + LEVEL.LV_15.name(), "리우 Lv.15 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.MASAYOSI.name() + "_" + LEVEL.LV_15.name(), "마사요시 Lv.15 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.LIU.name() + "_" + LEVEL.LV_15.name(), "리우 Lv.15 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.MASAYOSHI.name() + "_" + LEVEL.LV_15.name(), "마사요시 Lv.15 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.MAKI.name() + "_" + LEVEL.LV_15.name(), "마키 Lv.15 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.MICHEL.name() + "_" + LEVEL.LV_15.name(), "미첼 Lv.15 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.MITCHELL.name() + "_" + LEVEL.LV_15.name(), "미첼 Lv.15 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.BILLY.name() + "_" + LEVEL.LV_15.name(), "빌리 Lv.15 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.EL_NINYO.name() + "_" + LEVEL.LV_15.name(), "엘 니뇨 Lv.15 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.EL_NINO.name() + "_" + LEVEL.LV_15.name(), "엘 니뇨 Lv.15 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.YONE.name() + "_" + LEVEL.LV_15.name(), "요네 Lv.15 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.YUSKE.name() + "_" + LEVEL.LV_15.name(), "유스케 Lv.15 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.YUSUKE.name() + "_" + LEVEL.LV_15.name(), "유스케 Lv.15 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.ITSUKI.name() + "_" + LEVEL.LV_15.name(), "이츠키 Lv.15 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.JANDI.name() + "_" + LEVEL.LV_15.name(), "잔디 Lv.15 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.JAMES.name() + "_" + LEVEL.LV_15.name(), "제임스 Lv.15 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.CHARLY.name() + "_" + LEVEL.LV_15.name(), "찰리 Lv.15 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.CAROLLINA.name() + "_" + LEVEL.LV_15.name(), "카롤리나 Lv.15 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.KORCANIJI.name() + "_" + LEVEL.LV_15.name(), "코카니지 Lv.15 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.CHARLIE.name() + "_" + LEVEL.LV_15.name(), "찰리 Lv.15 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.CAROLINA.name() + "_" + LEVEL.LV_15.name(), "카롤리나 Lv.15 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.COHH.name() + "_" + LEVEL.LV_15.name(), "코카니지 Lv.15 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.KYOKO.name() + "_" + LEVEL.LV_15.name(), "쿄코 Lv.15 달성"));
         unlockDtoList.add(new DishDto.UnlockDto(STAFF.TOHOKU.name() + "_" + LEVEL.LV_15.name(), "토호쿠 Lv.15 달성"));
-        unlockDtoList.add(new DishDto.UnlockDto(STAFF.PIE.name() + "_" + LEVEL.LV_15.name(), "파이 Lv.15 달성"));
+        unlockDtoList.add(new DishDto.UnlockDto(STAFF.PAI.name() + "_" + LEVEL.LV_15.name(), "파이 Lv.15 달성"));
 
         return unlockDtoList;
     }
