@@ -1,12 +1,12 @@
 package com.dave.the.diver.entity;
 
-import com.dave.the.diver.dto.DishDto;
 import com.dave.the.diver.dto.DishLevelDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+
 
 @Entity
 @Getter

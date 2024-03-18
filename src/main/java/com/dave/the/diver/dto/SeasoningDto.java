@@ -1,6 +1,5 @@
 package com.dave.the.diver.dto;
 
-import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.Seasoning;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;

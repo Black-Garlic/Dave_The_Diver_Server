@@ -1,6 +1,5 @@
 package com.dave.the.diver.service;
 
-import com.dave.the.diver.dto.DishDto;
 import com.dave.the.diver.dto.DishLevelDto;
 import com.dave.the.diver.entity.Dish;
 import com.dave.the.diver.entity.DishLevel;
