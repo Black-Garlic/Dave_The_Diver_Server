@@ -29,8 +29,8 @@ public class DishDto {
     private String unlock;
     private List<PartyDto> partyDtoList;
     private List<String> partyList;
-    @Setter
     private List<RecipeDto> recipeDtoList;
+    private int rank = 1;
 
     public DishDto(
         Dish dish
@@ -98,6 +98,18 @@ public class DishDto {
                 partyList.add((String) partyJsonArray.get(i));
             }
         }
+    }
+
+    public void setRecipeDtoList(List<RecipeDto> recipeDtoList) {
+        this.recipeDtoList = recipeDtoList;
+
+        int highestRank = 1;
+
+        for (RecipeDto recipeDto : recipeDtoList) {
+            highestRank = Math.max(recipeDto.getIngredientDto().getRank(), highestRank);
+        }
+
+        this.rank = highestRank;
     }
 
     @Getter
