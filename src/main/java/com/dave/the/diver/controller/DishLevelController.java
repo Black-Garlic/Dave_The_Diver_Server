@@ -37,7 +37,7 @@ public class DishLevelController {
      ***********************************/
     @PostMapping(path = Path.DISH_LEVEL, produces = "application/json")
     public Result updateDishLevel(
-        @ModelAttribute DishVM.Update dishVM
+        @RequestBody DishVM.Update dishVM
     ) {
         Result result = new Result();
 
